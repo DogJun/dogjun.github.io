@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="DogJun&#39;s Blog">
 <meta property="og:description" content="为了提高用户体验，银行卡号会每四个数字用空格隔开，这个使用正则表达式不难做到，但是容易出现不能从数字中间插入的问题：光标移动到中间，输入一个数字后光标便自动跳转到最右了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-05T13:02:29.000Z">
+<meta property="og:updated_time" content="2017-09-05T13:04:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="输入银行卡号每四位自动添加空格">
 <meta name="twitter:description" content="为了提高用户体验，银行卡号会每四个数字用空格隔开，这个使用正则表达式不难做到，但是容易出现不能从数字中间插入的问题：光标移动到中间，输入一个数字后光标便自动跳转到最右了。">
@@ -318,6 +318,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -346,7 +368,7 @@
 
       
         <p>为了提高用户体验，银行卡号会每四个数字用空格隔开，这个使用正则表达式不难做到，但是容易出现不能从数字中间插入的问题：光标移动到中间，输入一个数字后光标便自动跳转到最右了。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"tel"</span> <span class="attr">id</span>=<span class="string">"bankNum"</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">placeholder</span>=<span class="string">"请输入本人所属银行卡号"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"tel"</span> <span class="attr">id</span>=<span class="string">"bankNum"</span> <span class="attr">placeholder</span>=<span class="string">"请输入本人所属银行卡号"</span> /&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#bankNum"</span>).on(<span class="string">"keyup"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="comment">// 获取当前光标的位置</span></div><div class="line">    <span class="keyword">var</span> caret = <span class="keyword">this</span>.selectionStart;</div><div class="line">    <span class="comment">// 获取当前的value</span></div><div class="line">    <span class="keyword">var</span> value = <span class="keyword">this</span>.value;</div><div class="line">    <span class="comment">// 从左边沿到坐标之间的空格数</span></div><div class="line">    <span class="keyword">var</span> sp = (value.slice(<span class="number">0</span>, caret).match(<span class="regexp">/\s/g</span>) || []).length;</div><div class="line">    <span class="comment">// 去掉所有空格</span></div><div class="line">    <span class="keyword">var</span> nospace = value.replace(<span class="regexp">/\s/g</span>, <span class="string">''</span>);</div><div class="line">    <span class="comment">// 重新插入空格</span></div><div class="line">    <span class="keyword">var</span> curVal = <span class="keyword">this</span>.value = nospace.replace(<span class="regexp">/(\d&#123;4&#125;)/g</span>, <span class="string">"$1 "</span>).trim();</div><div class="line">    <span class="comment">// 从左边沿到原坐标之间的空格数</span></div><div class="line">    <span class="keyword">var</span> curSp = (curVal.slice(<span class="number">0</span>, caret).match(<span class="regexp">/\s/g</span>) || []).length;</div><div class="line">    <span class="comment">// 修正光标位置</span></div><div class="line">    <span class="keyword">this</span>.selectionEnd = <span class="keyword">this</span>.selectionStart = caret + curSp - sp;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 
       
