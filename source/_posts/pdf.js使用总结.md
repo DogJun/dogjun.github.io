@@ -25,7 +25,10 @@ categories: 前端
 </head>
 <body>
   <div id="pdf-container"></div>
-<script type="text/javascript">
+</body>
+</html>
+```
+```javascript
 // pdfUrl 为 pdf 文件地址
 PDFJS.getDocument(pdfUrl).then(function(pdf) {
   // 显示所有页数
@@ -51,9 +54,6 @@ PDFJS.getDocument(pdfUrl).then(function(pdf) {
     });
   }
 })
-</script>
-</body>
-</html>
 ```
 ## 遇到的问题
 项目开发过程中发现pdf中的电子签章不显示，控制台警告如下：
