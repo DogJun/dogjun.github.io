@@ -2,7 +2,7 @@
 title: sticky footer
 date: 2017-11-05 22:11:30
 tags: css
-categories: 前端
+categories: 前端
 ---
 在网页设计中，sticky footer 设计是最古老和最经典的效果之一，大致概括如下：如果页面内容不够长的时候，页脚固定在浏览器底部；如果页面内容足够长的时候，页脚会被内容向下推送。
 <!--more-->
