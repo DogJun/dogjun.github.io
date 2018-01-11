@@ -230,6 +230,7 @@ console.log(item);
 闭包由两部分组成
 - 函数
 - 环境：函数创建时作用域内的局部变量
+
 ```js
 function makeCounter(init) {
 var init = init || 0;
