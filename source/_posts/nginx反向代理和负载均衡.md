@@ -59,7 +59,7 @@ nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/m
 ```
 worker_processes 4;
 events {
-    worker_connections 1021;
+    worker_connections 1024;
 }
 http {
     upstream firsttest {
