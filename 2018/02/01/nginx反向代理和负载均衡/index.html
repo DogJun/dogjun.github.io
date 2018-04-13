@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="DogJun&#39;s Blog">
 <meta property="og:description" content="web项目部署一般都少不了nginx做反向代理和负载均衡，最近搞了三台服务器玩了一下，对一些知识点做个总结记录…">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T15:46:38.797Z">
+<meta property="og:updated_time" content="2018-04-13T15:18:29.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx反向代理和负载均衡">
 <meta name="twitter:description" content="web项目部署一般都少不了nginx做反向代理和负载均衡，最近搞了三台服务器玩了一下，对一些知识点做个总结记录…">
@@ -409,7 +409,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="一个简单的nginx配置"><a href="#一个简单的nginx配置" class="headerlink" title="一个简单的nginx配置"></a>一个简单的nginx配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">worker_processes 4;</div><div class="line">events &#123;</div><div class="line">    worker_connections 1021;</div><div class="line">&#125;</div><div class="line">http &#123;</div><div class="line">    upstream firsttest &#123;</div><div class="line">        ip_hash;</div><div class="line">        server 192.168.0.1 weight=2;</div><div class="line">        server 192.168.0.2;</div><div class="line">    &#125;</div><div class="line">    server &#123;</div><div class="line">        listen 8080;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://firsttest;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="一个简单的nginx配置"><a href="#一个简单的nginx配置" class="headerlink" title="一个简单的nginx配置"></a>一个简单的nginx配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">worker_processes 4;</div><div class="line">events &#123;</div><div class="line">    worker_connections 1024;</div><div class="line">&#125;</div><div class="line">http &#123;</div><div class="line">    upstream firsttest &#123;</div><div class="line">        ip_hash;</div><div class="line">        server 192.168.0.1 weight=2;</div><div class="line">        server 192.168.0.2;</div><div class="line">    &#125;</div><div class="line">    server &#123;</div><div class="line">        listen 8080;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://firsttest;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
