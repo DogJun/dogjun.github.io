@@ -31,7 +31,7 @@ after_script:
 
 branches:
     only:
-        - hexo
+        - source
 
 env:
     global:
