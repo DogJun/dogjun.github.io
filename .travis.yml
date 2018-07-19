@@ -1,0 +1,39 @@
+language: node_js
+
+node_js: stable
+
+cache:
+    apt: true
+    directories:
+        - node_modules
+
+notifications:
+    email:
+        recipients:
+            - 498343874@qq.com
+        on_success: change
+        on_failure: always
+
+before_install:
+    - export TZ='Asia/Shanghai'
+    - npm install hexo-cli -g
+    - chmod +x ./publish-to-gh-pages.sh
+
+install:
+    - npm install
+
+script:
+    - hexo clean
+    - hexo g
+
+after_script:
+    - ./publish-to-gh-pages.sh
+
+branches:
+    only:
+        - hexo
+
+env:
+    global:
+        # Github Pages
+        - GH_REF: github.com/DogJun/dogjun.github.io.git
