@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>常用url参数操作方法 | DogJun&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录一下常用的url参数操作方法">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用url参数操作方法">
+<meta property="og:url" content="http://yoursite.com/2017/09/05/常用url参数操作方法/index.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="记录一下常用的url参数操作方法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-19T08:14:40.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用url参数操作方法">
+<meta name="twitter:description" content="记录一下常用的url参数操作方法">
+  
+    <link rel="alternate" href="/atom.xml" title="DogJun&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DogJun&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-常用url参数操作方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/05/常用url参数操作方法/" class="article-date">
+  <time datetime="2017-09-05T13:08:27.000Z" itemprop="datePublished">2017-09-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常用url参数操作方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一下常用的url参数操作方法</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="获取单个参数"><a href="#获取单个参数" class="headerlink" title="获取单个参数"></a>获取单个参数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [getParam ]</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; name</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; url   [default:location.href]</span></div><div class="line"><span class="comment"> * @return &#123;String|Boolean&#125;  </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getParam</span>(<span class="params">name, url</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> name !== <span class="string">'string'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">if</span> (!url) url = <span class="built_in">window</span>.location.href;</div><div class="line">    <span class="comment">// 当遇到name[xx]时，对方括号做一下转义为 name\[xxx\]，因为下面还需要使用name做正则</span></div><div class="line">    name = name.replace(<span class="regexp">/[\[\]]/g</span>, <span class="string">'\\$&amp;'</span>);</div><div class="line">    <span class="keyword">var</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'[?&amp;]'</span> + name + <span class="string">'(=([^&amp;#]*)|&amp;|#|$)'</span>);</div><div class="line">    <span class="keyword">var</span> results = regex.exec(url);</div><div class="line">    <span class="keyword">if</span> (!results) <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    <span class="keyword">if</span> (!results[<span class="number">2</span>]) <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(results[<span class="number">2</span>].replace(<span class="regexp">/\+/g</span>, <span class="string">" "</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line">getParam(<span class="string">'query'</span>,<span class="string">'https://juejin.im/search?query=hello&amp;time=2017-11-12'</span>)</div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">// "hello"</span></div></pre></td></tr></table></figure>
+<h1 id="设置单个参数"><a href="#设置单个参数" class="headerlink" title="设置单个参数"></a>设置单个参数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [setParam 设置单个参数]</span></div><div class="line"><span class="comment"> * @param &#123;String&#125; name</span></div><div class="line"><span class="comment"> * @param &#123;String|Number&#125; val  </span></div><div class="line"><span class="comment"> * @return &#123;String|Boolean&#125;  </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setParam</span>(<span class="params">name, val, url</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> name !== <span class="string">'string'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">if</span> (!url) url = <span class="built_in">window</span>.location.href;</div><div class="line">    <span class="keyword">var</span> _name = name.replace(<span class="regexp">/[\[\]]/g</span>, <span class="string">'\\$&amp;'</span>);</div><div class="line">    <span class="keyword">var</span> value = name + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(val);</div><div class="line">    <span class="keyword">var</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(_name + <span class="string">'=[^&amp;]*'</span>);</div><div class="line">    <span class="keyword">var</span> urlArr = url.split(<span class="string">'#'</span>);</div><div class="line">    <span class="keyword">var</span> result = <span class="string">''</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(regex.exec(url))&#123;</div><div class="line">        result =  url.replace(regex, value);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        result = urlArr[<span class="number">0</span>]+<span class="string">'&amp;'</span>+value+ (urlArr[<span class="number">1</span>] || <span class="string">''</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result</div><div class="line">&#125;</div><div class="line">setParam(<span class="string">'query'</span>,<span class="string">'world'</span>,<span class="string">'https://juejin.im/search?query=hello&amp;time=2017-11-12'</span>)</div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">// "https://juejin.im/search?query=world&amp;time=2017-11-12"</span></div></pre></td></tr></table></figure>
+<h1 id="移除单个参数"><a href="#移除单个参数" class="headerlink" title="移除单个参数"></a>移除单个参数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [removeParam 移除单个参数]</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; name</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; url   [default:location.href]</span></div><div class="line"><span class="comment"> * @return &#123;String|Boolean&#125;      </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeParam</span>(<span class="params">name, url</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> name !== <span class="string">'string'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">if</span> (!url) url = <span class="built_in">window</span>.location.href;</div><div class="line">    <span class="keyword">var</span> urlparts = url.split(<span class="string">'?'</span>);</div><div class="line">    <span class="keyword">var</span> prefix = <span class="built_in">encodeURIComponent</span>(name + <span class="string">'='</span>);</div><div class="line">    <span class="keyword">var</span> pars = urlparts[<span class="number">1</span>].split(<span class="regexp">/[&amp;;]/g</span>);</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>, len = pars.length;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (; i &lt; len; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">encodeURIComponent</span>(pars[i]).lastIndexOf(prefix, <span class="number">0</span>) !== <span class="number">-1</span>) &#123;</div><div class="line">            pars.splice(i, <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    url = urlparts[<span class="number">0</span>] + (pars.length &gt; <span class="number">0</span> ? <span class="string">'?'</span> + pars.join(<span class="string">'&amp;'</span>) : <span class="string">''</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> url;</div><div class="line">&#125;</div><div class="line">removeParam(<span class="string">'query'</span>,<span class="string">'https://juejin.im/search?query=hello&amp;time=2017-11-12'</span>)</div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">// "https://juejin.im/search?time=2017-11-12"</span></div></pre></td></tr></table></figure>
+<h1 id="获取多个参数"><a href="#获取多个参数" class="headerlink" title="获取多个参数"></a>获取多个参数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [getParams 获取多个参数]</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; names [多个用空格分割]</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; url   [default:location.href]</span></div><div class="line"><span class="comment"> * @return &#123;[String|Boolean]&#125;       </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getParams</span>(<span class="params">names, url</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> name !== <span class="string">'string'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">var</span> names = names.split(<span class="string">' '</span>);</div><div class="line">    <span class="keyword">var</span> result = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>,</div><div class="line">        len = names.length;</div><div class="line">    <span class="keyword">if</span> (names.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span> (; i &lt; len; i++) &#123;</div><div class="line">        result[names[i]] = getParam(names[i], url);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">getParams(<span class="string">'query time'</span>,<span class="string">'https://juejin.im/search?query=hello&amp;time=2017-11-12'</span>)</div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">// &#123;query: "hello", time: "2017-11-12"&#125;</span></div></pre></td></tr></table></figure>
+<h1 id="设置多个参数"><a href="#设置多个参数" class="headerlink" title="设置多个参数"></a>设置多个参数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [setParams 设置多个参数]</span></div><div class="line"><span class="comment"> * @param &#123;Object&#125; obj</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; url   [default:location.href]</span></div><div class="line"><span class="comment"> * @return &#123;[String|Boolean]&#125;       </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setParams</span>(<span class="params">obj, url</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = url || <span class="string">''</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) !== <span class="string">'[object Object]'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> name <span class="keyword">in</span> obj) &#123;</div><div class="line">        result = setParam(name, obj[name], result);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">setParams(&#123;<span class="attr">a</span>:<span class="number">111</span>,<span class="attr">b</span>:<span class="number">222</span>,<span class="attr">query</span>:<span class="string">'world'</span>&#125;,<span class="string">'https://juejin.im/search?query=hello&amp;time=2017-11-12'</span>)</div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">// "https://juejin.im/search?query=world&amp;time=2017-11-12&amp;a=111&amp;b=222"</span></div></pre></td></tr></table></figure>
+<h1 id="移除多个参数"><a href="#移除多个参数" class="headerlink" title="移除多个参数"></a>移除多个参数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [removeParams 移除多个参数]</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; names [多个用空格分割]</span></div><div class="line"><span class="comment"> * @param  &#123;String&#125; url   [default:location.href]</span></div><div class="line"><span class="comment"> * @return &#123;[String|Boolean]&#125;       </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeParams</span>(<span class="params">names, url</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = url || <span class="string">''</span>;</div><div class="line">    <span class="keyword">var</span> names = names.split(<span class="string">' '</span>);</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>,</div><div class="line">        len = names.length;</div><div class="line">    <span class="keyword">if</span> (names.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (; i &lt; len; i++) &#123;</div><div class="line">        result = removeParam(names[i], result);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">removeParams(<span class="string">'query time'</span>,<span class="string">'https://juejin.im/search?query=hello&amp;time=2017-11-12'</span>)</div><div class="line"><span class="comment">// output:</span></div><div class="line"><span class="comment">// "https://juejin.im/search"</span></div></pre></td></tr></table></figure>
+<h1 id="url-hash-操作"><a href="#url-hash-操作" class="headerlink" title="url hash 操作"></a>url hash 操作</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [getHash 方法]</span></div><div class="line"><span class="comment"> * @param  &#123;[String]&#125; url [default:location.href]</span></div><div class="line"><span class="comment"> * @return &#123;[String]&#125;     </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHash</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(url ? url.substring(url.indexOf(<span class="string">'#'</span>) + <span class="number">1</span>) : <span class="built_in">window</span>.location.hash.substr(<span class="number">1</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [setHash 方法]</span></div><div class="line"><span class="comment"> * @param &#123;String&#125; hash</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setHash</span>(<span class="params">hash</span>) </span>&#123;</div><div class="line">    <span class="built_in">window</span>.location.replace(<span class="string">'#'</span> + <span class="built_in">encodeURIComponent</span>(hash));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [removeHash 方法]</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeHash</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">window</span>.location.replace(<span class="string">'#'</span>, <span class="string">''</span>);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/05/常用url参数操作方法/" data-id="cjjsa60vu0010s2uuwmiupz54" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/05/IE8和IE9跨域请求数据兼容性解决方案/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          IE8和IE9跨域请求数据兼容性解决方案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/05/输入银行卡号每四位自动添加空格/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">输入银行卡号每四位自动添加空格</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ngrok/">ngrok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/ngrok/" style="font-size: 10px;">ngrok</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/01/webpack深入学习/">webpack深入学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/nodejs深入学习笔记/">nodejs深入学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/24/vue源码解析/">vue源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/01/nginx反向代理和负载均衡/">nginx反向代理和负载均衡</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/18/模块化的前世今生/">模块化的前世今生</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DogJun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

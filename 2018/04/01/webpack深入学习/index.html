@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>webpack深入学习 | DogJun&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="webpack4刚发布的那天就开始关注了，自己也是顺利把公司的项目从webpack3升级到webpack4，对一些知识做下归纳总结吧…">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack深入学习">
+<meta property="og:url" content="http://yoursite.com/2018/04/01/webpack深入学习/index.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="webpack4刚发布的那天就开始关注了，自己也是顺利把公司的项目从webpack3升级到webpack4，对一些知识做下归纳总结吧…">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-19T08:14:40.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack深入学习">
+<meta name="twitter:description" content="webpack4刚发布的那天就开始关注了，自己也是顺利把公司的项目从webpack3升级到webpack4，对一些知识做下归纳总结吧…">
+  
+    <link rel="alternate" href="/atom.xml" title="DogJun&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DogJun&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webpack深入学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/01/webpack深入学习/" class="article-date">
+  <time datetime="2018-04-01T15:24:49.000Z" itemprop="datePublished">2018-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack深入学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>webpack4刚发布的那天就开始关注了，自己也是顺利把公司的项目从webpack3升级到webpack4，对一些知识做下归纳总结吧…</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="webpack-what"><a href="#webpack-what" class="headerlink" title="webpack what"></a>webpack what</h1><p>可以看做一个模块化打包机，分析项目结构，处理模块化依赖，转换成为浏览器可运行的代码</p>
+<ul>
+<li>代码转换: TypeScript 编译成 JavaScript、SCSS,LESS 编译成 CSS.</li>
+<li>文件优化：压缩 JavaScript、CSS、HTML 代码，压缩合并图片。</li>
+<li>代码分割：提取多个页面的公共代码、提取首屏不需要执行部分的代码让其异步加载。</li>
+<li>模块合并：在采用模块化的项目里会有很多个模块和文件，需要构建功能把模块分类合并成一个文件。</li>
+<li>自动刷新：监听本地源代码的变化，自动重新构建、刷新浏览器。</li>
+</ul>
+<h1 id="webpack的执行过程"><a href="#webpack的执行过程" class="headerlink" title="webpack的执行过程"></a>webpack的执行过程</h1><p>webpack启动之后会从entry里配置的module开始递归解析entry依赖的所有module。每找到一个module，就会根据配置的loader去找出相应的转换规则，对module进行转换后，再解析出当前module依赖的module。这些模块会以entry为单位进行分组，一个entry和其所有依赖的module被分到一个组也就是一个chunk。最后webpack会把所有的chunk转换成文件输出，在整个流程中webpack会在恰当的时机执行plugin里定义的逻辑</p>
+<h1 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h1><p>loader是一个模块导出函数，在正则匹配成功的时候调用，webpack把文件数组传入进来，在this上下文可以访问loader API</p>
+<ul>
+<li>this.context: 当前处理文件的所在目录，假如当前 Loader 处理的文件是 /src/main.js，则 this.context 就等于 /src。<br>this.resource: 当前处理文件的完整请求路径，包括 querystring，例如 /src/main.js?name=1。</li>
+<li>this.resourcePath: 当前处理文件的路径，例如 /src/main.js。</li>
+<li>this.resourceQuery: 当前处理文件的 querystring。</li>
+<li>this.target: 等于 Webpack 配置中的 Target</li>
+<li>this.loadModule: 但 Loader 在处理一个文件时，如果依赖其它文件的处理结果才能得出当前文件的结果时， 就可以通过 - - -  this.loadModule(request: string, callback: function(err, source, sourceMap, module)) 去获得 request 对应文件的处理结果。</li>
+<li>this.resolve: 像 require 语句一样获得指定文件的完整路径，使用方法为 resolve(context: string, request: string, callback: function(err, result: string))。</li>
+<li>this.addDependency: 给当前处理文件添加其依赖的文件，以便再其依赖的文件发生变化时，会重新调用 Loader 处理该文件。使用方法为 addDependency(file: string)。</li>
+<li>this.addContextDependency: 和 addDependency 类似，但 addContextDependency 是把整个目录加入到当前正在处理文件的依赖中。使用方法为 addContextDependency(directory: string)。</li>
+<li>this.clearDependencies: 清除当前正在处理文件的所有依赖，使用方法为 clearDependencies()。</li>
+<li>this.emitFile: 输出一个文件，使用方法为 emitFile(name: string, content: Buffer|string, sourceMap: {…})。</li>
+<li>this.async: 返回一个回调函数，用于异步执行。</li>
+</ul>
+<h1 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h1><p>webpack整个构建流程有许多钩子，开发者可以在指定的阶段加入自己的行为到webpack构建流程中。插件由以下构成:</p>
+<ul>
+<li>一个 JavaScript 命名函数。</li>
+<li>在插件函数的 prototype 上定义一个 apply 方法。</li>
+<li>指定一个绑定到 webpack 自身的事件钩子。</li>
+<li>处理 webpack 内部实例的特定数据。</li>
+<li>功能完成后调用 webpack 提供的回调。<br>整个webpack流程由compiler和compilation构成,compiler只会创建一次，compilation如果开起了watch文件变化，那么会多次生成compilation. 那么这2个类下面生成了钩子.<br>写了一个小插件，将htmlwebapckplugin生成的css和js插入到模板指定的位置</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> pluginName = <span class="string">'htmlAfterWebpackPlugin'</span>;</div><div class="line"><span class="keyword">const</span> assetsHelp = <span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">let</span> css=[],js= []; </div><div class="line">    <span class="keyword">const</span> dir =&#123;</div><div class="line">        js:<span class="function"><span class="params">item</span>=&gt;</span><span class="string">`&lt;script src="<span class="subst">$&#123;item&#125;</span>"&gt;&lt;/script&gt;`</span>,</div><div class="line">        css:<span class="function"><span class="params">item</span>=&gt;</span><span class="string">`&lt;link rel="stylesheet" href="<span class="subst">$&#123;item&#125;</span>"&gt;`</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> jsitem <span class="keyword">of</span> data.js)&#123;</div><div class="line">        js.push(dir.js(jsitem))</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> cssitem <span class="keyword">of</span> data.css)&#123;</div><div class="line">        css.push(dir.css(cssitem))</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>&#123;</div><div class="line">        css,</div><div class="line">        js</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">htmlAfterWebpackPlugin</span> </span>&#123;</div><div class="line">    apply(compiler) &#123;</div><div class="line">        <span class="comment">//html-webpack-plugin-before-html-processing</span></div><div class="line">        compiler.hooks.compilation.tap(pluginName, compilation =&gt; &#123;</div><div class="line">            compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing.tap(pluginName,htmlPluginData=&gt;&#123;</div><div class="line">                <span class="keyword">let</span> _html = htmlPluginData.html;</div><div class="line">                <span class="keyword">const</span> result = assetsHelp(htmlPluginData.assets);</div><div class="line">                _html = _html.replace(<span class="string">"&lt;!--injectcss--&gt;"</span>,result.css);</div><div class="line">                _html = _html.replace(<span class="string">"&lt;!--injectjs--&gt;"</span>,result.js);</div><div class="line">                <span class="comment">// console.log('得到的值',_html);</span></div><div class="line">                htmlPluginData.html = _html;</div><div class="line">            &#125;)</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = htmlAfterWebpackPlugin;</div></pre></td></tr></table></figure>
+<h1 id="scope-hoisting"><a href="#scope-hoisting" class="headerlink" title="scope hoisting"></a>scope hoisting</h1><p>如果项目是用ES2015的模块语法，并且webpack3+，那么建议启用这一插件，把所有的模块放到一个函数里，减少了函数声明，文件体积变小，函数作用域变少。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.optimize.ModuleConcatenationPlugin()</div></pre></td></tr></table></figure></p>
+<h1 id="提取第三方库"><a href="#提取第三方库" class="headerlink" title="提取第三方库"></a>提取第三方库</h1><p>方便长期缓存第三方的库，新建一个入口，把第三方库作为一个chunk，生成vendor.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    entry: &#123;</div><div class="line">        main: <span class="string">'./src/index.js'</span>,</div><div class="line">        vendor: [<span class="string">'react'</span>, <span class="string">'react-dom'</span>],</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="happypack"><a href="#happypack" class="headerlink" title="happypack"></a>happypack</h1><p>webpack是基于nodejs的，是单线程的，happypack可以开启多个子线程并发执行，子线程处理完后把结果交给主进程<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> HappyPack = <span class="built_in">require</span>(<span class="string">'happypack'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">	entry: <span class="string">'./src/index.js'</span>,</div><div class="line">	output: &#123;</div><div class="line">		path: path.join(__dirname, <span class="string">'./dist'</span>),</div><div class="line">		filename: <span class="string">'main.js'</span>,</div><div class="line">    &#125;,</div><div class="line">    <span class="built_in">module</span>: &#123;</div><div class="line">        rules: [</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">                exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">                use: <span class="string">'happypack/loader?id=babel'</span>,</div><div class="line">            &#125;,</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        <span class="keyword">new</span> HappyPack(&#123;</div><div class="line">            id: <span class="string">'babel'</span>,</div><div class="line">            threads: <span class="number">4</span>,</div><div class="line">            loaders: [<span class="string">'babel-loader'</span>]</div><div class="line">        &#125;),</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="webpack4-带来的新特性"><a href="#webpack4-带来的新特性" class="headerlink" title="webpack4 带来的新特性"></a>webpack4 带来的新特性</h1><h2 id="环境支持"><a href="#环境支持" class="headerlink" title="环境支持"></a>环境支持</h2><p>不再支持node4，node6，使用v8 5.0版本，支持93%的ES6语法，因为webpack4使用了很多JS新的语法，他们在新版本v8里进行了优化</p>
+<h2 id="0配置"><a href="#0配置" class="headerlink" title="0配置"></a>0配置</h2><p>webpack不再硬性要求webpack.config.js作为打包的入口配置文件，默认入口’./src’,默认出口’./dist’</p>
+<h2 id="Mode"><a href="#Mode" class="headerlink" title="Mode"></a>Mode</h2><p>webpack需要配置mode属性，可选development或者production<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"script": &#123;</div><div class="line">    "dev": "webpack --mode development",</div><div class="line">    "build": "webpack --mode production"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>development模式：</p>
+<ul>
+<li>浏览器调试工具</li>
+<li>注释、开发阶段的详细错误日志和提示</li>
+<li>快速和优化的增量构建机制  </li>
+</ul>
+<p>production模式：</p>
+<ul>
+<li>开启所有的优化代码</li>
+<li>更小的bundle大小</li>
+<li>去除掉只在开发阶段运行的代码</li>
+<li>Scope hoisting和Tree-shaking</li>
+</ul>
+<h2 id="插件和优化"><a href="#插件和优化" class="headerlink" title="插件和优化"></a>插件和优化</h2><p>webpack4删除了CommonsChunkPlugin插件，它使用内置API optimization.splitChunks 和 optimization.runtimeChunk，这意味着webpack会默认为你生成共享的代码块。其它插件变化如下:</p>
+<ul>
+<li>NoEmitOnErrorsPlugin 废弃，使用optimization.noEmitOnErrors替代，在生产环境中默认开启该插件。</li>
+<li>ModuleConcatenationPlugin 废弃，使用optimization.concatenateModules替代，在生产环境默认开启该插件。</li>
+<li>NamedModulesPlugin 废弃，使用optimization.namedModules替代，在生产环境默认开启。<br>uglifyjs-webpack-plugin升级到了v1.0版本, 默认开启缓存和并行功能。</li>
+</ul>
+<h2 id="开箱即用WebAssembly"><a href="#开箱即用WebAssembly" class="headerlink" title="开箱即用WebAssembly"></a>开箱即用WebAssembly</h2><p>对这一块不了解,后续补上</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/01/webpack深入学习/" data-id="cjjsa60vn000os2uuov5dyfec" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/08/nodejs深入学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">nodejs深入学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ngrok/">ngrok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/ngrok/" style="font-size: 10px;">ngrok</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/01/webpack深入学习/">webpack深入学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/nodejs深入学习笔记/">nodejs深入学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/24/vue源码解析/">vue源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/01/nginx反向代理和负载均衡/">nginx反向代理和负载均衡</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/18/模块化的前世今生/">模块化的前世今生</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DogJun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

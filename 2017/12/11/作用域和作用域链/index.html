@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>作用域和作用域链 | DogJun&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作用域是每种计算机语言最重要的基础之一，当然它也是JavaScript最重要的概念之一。要想真正的深入了解JavaScript，了解JavaScript的作用域和作用域链非常必要。">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域和作用域链">
+<meta property="og:url" content="http://yoursite.com/2017/12/11/作用域和作用域链/index.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="作用域是每种计算机语言最重要的基础之一，当然它也是JavaScript最重要的概念之一。要想真正的深入了解JavaScript，了解JavaScript的作用域和作用域链非常必要。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-19T08:14:40.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作用域和作用域链">
+<meta name="twitter:description" content="作用域是每种计算机语言最重要的基础之一，当然它也是JavaScript最重要的概念之一。要想真正的深入了解JavaScript，了解JavaScript的作用域和作用域链非常必要。">
+  
+    <link rel="alternate" href="/atom.xml" title="DogJun&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DogJun&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-作用域和作用域链" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/11/作用域和作用域链/" class="article-date">
+  <time datetime="2017-12-11T02:47:30.000Z" itemprop="datePublished">2017-12-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      作用域和作用域链
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作用域是每种计算机语言最重要的基础之一，当然它也是JavaScript最重要的概念之一。要想真正的深入了解JavaScript，了解JavaScript的作用域和作用域链非常必要。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="JavaScript的作用域是什么"><a href="#JavaScript的作用域是什么" class="headerlink" title="JavaScript的作用域是什么"></a>JavaScript的作用域是什么</h1><p>简单的说，作用域就是变量和函数可访问的范围，即作用域控制着变量和函数的可见性和生命周期。在javascript的作用域有全局作用域和局部作用域两种，局部作用域也叫函数作用域。</p>
+<h2 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h2><p>在代码中任何地方都能访问到的对象拥有全局作用域，以下几种情况拥有全局作用域。<br>1、程序最外层定义的函数或变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">'dogjun'</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  alert(a)</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 'dogjun'</span></div><div class="line">hello() <span class="comment">// 能访问到 'dogjun'</span></div></pre></td></tr></table></figure></p>
+<p>2、所有未定义直接赋值的变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  a = <span class="string">'dogjun'</span></div><div class="line">  <span class="keyword">var</span> b = <span class="string">'dogjun1'</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 'dogjun'</span></div><div class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 报错</span></div></pre></td></tr></table></figure></p>
+<p>3、所有window对象的属性和方法<br>一般情况下，window对象的内置属性都拥有全局作用域，例如window.name、window.location、window.top等等。</p>
+<h2 id="局部作用域（函数作用域）"><a href="#局部作用域（函数作用域）" class="headerlink" title="局部作用域（函数作用域）"></a>局部作用域（函数作用域）</h2><p>局部作用域在函数内创建，函数内可访问，函数外不可访问。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">functon hello () &#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="string">'dogjun'</span></div><div class="line">  alert(a)</div><div class="line">&#125;</div><div class="line">hello() <span class="comment">// 能访问到'dogjun'</span></div><div class="line">alert(a) <span class="comment">// error not defined</span></div></pre></td></tr></table></figure></p>
+<h1 id="作用域链是什么"><a href="#作用域链是什么" class="headerlink" title="作用域链是什么"></a>作用域链是什么</h1><p>了解作用域链之前要先知道几个概念</p>
+<ul>
+<li>变量和函数的声明</li>
+<li>函数的生命周期</li>
+<li>Activetion Object(AO), Variable Object(VO)<h2 id="变量和函数的声明"><a href="#变量和函数的声明" class="headerlink" title="变量和函数的声明"></a>变量和函数的声明</h2>在javascript引擎解析javascript代码的时候，会把变量和函数的声明进行预解析，然后再执行其他代码。</li>
+</ul>
+<h3 id="变量声明：只有一种声明方式，就是使用var关键字进行声明。直接赋值不是一种声明方式，仅仅实在全局对象上创建了新的属性（而不是变量）。它们有以下区别："><a href="#变量声明：只有一种声明方式，就是使用var关键字进行声明。直接赋值不是一种声明方式，仅仅实在全局对象上创建了新的属性（而不是变量）。它们有以下区别：" class="headerlink" title="变量声明：只有一种声明方式，就是使用var关键字进行声明。直接赋值不是一种声明方式，仅仅实在全局对象上创建了新的属性（而不是变量）。它们有以下区别："></a>变量声明：只有一种声明方式，就是使用var关键字进行声明。直接赋值不是一种声明方式，仅仅实在全局对象上创建了新的属性（而不是变量）。它们有以下区别：</h3><p>（1）因为只是一种赋值，所以不会声明提前<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(a) <span class="comment">// undefined</span></div><div class="line">alert(b) <span class="comment">// error 'b' is not defined</span></div><div class="line"><span class="keyword">var</span> a = <span class="string">'dogjun'</span></div><div class="line">b = <span class="string">'dogjun1'</span></div></pre></td></tr></table></figure></p>
+<p>(2)直接赋值形式是在执行阶段创建<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">alert(a) <span class="comment">// undefined</span></div><div class="line">b = <span class="number">10</span></div><div class="line">alert(<span class="number">10</span>) <span class="comment">// 10, 执行阶段创建</span></div><div class="line"><span class="keyword">var</span> a = <span class="string">'dogjun'</span></div><div class="line">alert(a) <span class="comment">// 'dogjun', 执行阶段修改</span></div></pre></td></tr></table></figure></p>
+<p>(3)变量不能删除（delete），属性可以删除<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">10</span></div><div class="line">alert(<span class="built_in">window</span>.a) <span class="comment">// 10</span></div><div class="line">alert(<span class="keyword">delete</span> a) <span class="comment">// true</span></div><div class="line">alert(<span class="built_in">window</span>.a) <span class="comment">// undefined</span></div><div class="line"><span class="keyword">var</span> b = <span class="number">20</span></div><div class="line">alert(<span class="built_in">window</span>.b) <span class="comment">// 20</span></div><div class="line">alert(<span class="keyword">delete</span> b) <span class="comment">// false</span></div><div class="line">alert(<span class="built_in">window</span>.b) <span class="comment">// 20, 变量不能被删除</span></div></pre></td></tr></table></figure></p>
+<p>这里有个意外情况，在eval的上下文中，变量可以删除。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">eval</span>(<span class="string">'var a = 10'</span>)</div><div class="line">alert(<span class="built_in">window</span>.a) <span class="comment">// 10</span></div><div class="line">alert(<span class="keyword">delete</span> a) <span class="comment">// true</span></div><div class="line">alert(<span class="built_in">window</span>.a) <span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
+<p>有些debug工具也是可以删除的，因为他们用了eval来执行代码。</p>
+<h3 id="函数声明：有三种声明方式"><a href="#函数声明：有三种声明方式" class="headerlink" title="函数声明：有三种声明方式"></a>函数声明：有三种声明方式</h3><p>（1）function name () {}直接创建<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b</div><div class="line">&#125;</div><div class="line">add(<span class="number">4</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure></p>
+<p>(2) new Function 构造函数创建<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a+b'</span>)</div><div class="line">add(<span class="number">4</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure></p>
+<p>(3)给变量赋值匿名函数方法创建<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b</div><div class="line">&#125;</div><div class="line">add(<span class="number">4</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure></p>
+<p>后面两种方法，在声明前访问，返回的都是一个undefined的变量。<br>注意：如果变量名和函数名声明时相同，函数优先声明。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">alert(x); <span class="comment">// function</span></div><div class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</div><div class="line">alert(x); <span class="comment">// 10</span></div><div class="line">x = <span class="number">20</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">alert(x); <span class="comment">// 20</span></div></pre></td></tr></table></figure></p>
+<h2 id="函数的生命周期"><a href="#函数的生命周期" class="headerlink" title="函数的生命周期"></a>函数的生命周期</h2><p>函数的生命周期分为创建和执行两个阶段。</p>
+<p>在函数创建阶段，js解析引擎进行预解析，会将函数声明提前，同时将函数放到全局作用域中或当前函数的上一级函数的局部作用域中。</p>
+<p>在函数执行阶段，js引擎会将当前函数的局部作用域和内部函数进行提前声明，然后再执行业务代码，当函数执行完毕后退出时，释放该函数的执行上下文，并注销该函数的局部变量。</p>
+<h2 id="什么是AO、VO"><a href="#什么是AO、VO" class="headerlink" title="什么是AO、VO"></a>什么是AO、VO</h2><p>VO(Variable Object 变量对象) 对应的就是函数创建阶段，js解析引擎进行预解析的时候，所有的变量和函数的声明，统称为VO。该变量与执行上下文有关，知道自己的数据存储在哪里，并且知道如何访问。VO是一个与执行上下文有关的特殊对象，它存储着在上下文中声明的以下内容：</p>
+<ul>
+<li>变量</li>
+<li>函数声明</li>
+<li>函数的形参<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> sum = a + b</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">say</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(sum)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> sum</div><div class="line">&#125;</div><div class="line"><span class="comment">// add, sum, a, b组合的对象就是VO,不过该对象上的值基本都是undefined</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>AO(Activetion Object 活动对象) 对应的就是函数执行阶段，当函数变调用执行的时候，会创建一个执行上下文。该执行上下文包含了函数所需的所有变量，这些变量共同组成了一个新的对象就是AO。该对象包含了：</p>
+<ul>
+<li>函数的所有局部变量</li>
+<li>函数的所有命名参数</li>
+<li>函数的参数集合</li>
+<li>函数的this指向<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> sum = a + b</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">say</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(sum)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> sum</div><div class="line">&#125;</div><div class="line">add(<span class="number">4</span>, <span class="number">5</span>)</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  AO = &#123;</span></div><div class="line"><span class="comment">    this: window,</span></div><div class="line"><span class="comment">    arguments: [4, 5],</span></div><div class="line"><span class="comment">    a: 4,</span></div><div class="line"><span class="comment">    b: 5,</span></div><div class="line"><span class="comment">    say: undefined,</span></div><div class="line"><span class="comment">    sum: undefined</span></div><div class="line"><span class="comment">  &#125;</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="javascript的作用域链"><a href="#javascript的作用域链" class="headerlink" title="javascript的作用域链"></a>javascript的作用域链</h1><p>当代码在一个环境中执行时，会创建变量对象的一个作用域链来保证对执行环境有权访问的变量和函数的有序访问。作用域第一个对象始终是当前执行代码所在环境的变量对象VO。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> sum = a + b</div><div class="line">  <span class="keyword">return</span> sum</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>假设函数在全局作用域中创建的，在函数add创建的时候，它的作用域链填入全局对象，全局对象中有所有全局变量，此时的全局变量就是VO。作用域链就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 此时作用域链只有一级，就是Global Object</div><div class="line">scope(add) -&gt; Global Object (VO)</div><div class="line">VO = &#123;</div><div class="line">  this: window,</div><div class="line">  add: </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果是函数执行阶段，那么将其AO作为作用域链的第一个对象，第二个对象就是上级函数的执行上下文VO，下一个对象以此类推。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">add(<span class="number">4</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<p>调用add后的作用域链是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此时作用域有两级，第一级为AO,然后Global Object（VO）</span></div><div class="line">scope(add) -&gt; AO -&gt; VO</div><div class="line"></div><div class="line">AO = &#123;</div><div class="line">  <span class="keyword">this</span>: <span class="built_in">window</span>,</div><div class="line">  <span class="built_in">arguments</span>: [<span class="number">4</span>, <span class="number">5</span>],</div><div class="line">  a: <span class="number">4</span>,</div><div class="line">  b: <span class="number">5</span>,</div><div class="line">  sum: <span class="literal">undefined</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">VO = &#123;</div><div class="line">  <span class="keyword">this</span>: <span class="built_in">window</span>,</div><div class="line">  add: </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在函数运行过程中标识符的解析是沿着作用域链一级一级搜索的过程，从第一个对象开始，逐级向后回溯，直到找到同名标识符为止，找到后不再继续遍历，找不到就报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">10</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> y = <span class="number">20</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> z = <span class="number">30</span></div><div class="line">    <span class="built_in">console</span>.log(x + y + z)</div><div class="line">  &#125;</div><div class="line">  bar()</div><div class="line">&#125;</div><div class="line">foo()</div></pre></td></tr></table></figure>
+<p>上面代码的输出结果为”60″，函数bar可以直接访问”z”，然后通过作用域链访问上层的”x”和”y”。此时的作用域链为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此时作用域链有三级：第一级为bar AO,第二级为foo AO,第三级为Global Object（VO）</span></div><div class="line"></div><div class="line">scope -&gt; bar.AO -&gt; foo.AO -&gt; Global <span class="built_in">Object</span></div><div class="line"></div><div class="line">bar.AO = &#123;</div><div class="line">  z : <span class="number">30</span>,</div><div class="line">  __parent__ : foo.AO</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.AO = &#123;</div><div class="line">  y : <span class="number">20</span>,</div><div class="line">  bar : ,</div><div class="line">  __parent__ : </div><div class="line">&#125;</div><div class="line"></div><div class="line">Global <span class="built_in">Object</span> = &#123;</div><div class="line">  x : <span class="number">10</span>,</div><div class="line">  foo : ,</div><div class="line">  __parent__ : <span class="literal">null</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/11/作用域和作用域链/" data-id="cjjsa60vp000ss2uua9yi4cf7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/08/javascript语言精粹/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javascript语言精粹
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/08/http协议那些事/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">http协议那些事</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ngrok/">ngrok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/ngrok/" style="font-size: 10px;">ngrok</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/01/webpack深入学习/">webpack深入学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/nodejs深入学习笔记/">nodejs深入学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/24/vue源码解析/">vue源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/01/nginx反向代理和负载均衡/">nginx反向代理和负载均衡</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/18/模块化的前世今生/">模块化的前世今生</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DogJun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

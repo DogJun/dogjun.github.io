@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>函数防抖和节流 | DogJun&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="针对一些会频繁触发的事件如scroll、resize，如果正常绑定事件处理函数的话，有可能在很短的时间内多次连续触发事件，十分影响性能，因此针对这类事件要进行防抖动或者节流处理">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数防抖和节流">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/函数防抖和节流/index.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="针对一些会频繁触发的事件如scroll、resize，如果正常绑定事件处理函数的话，有可能在很短的时间内多次连续触发事件，十分影响性能，因此针对这类事件要进行防抖动或者节流处理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-19T08:14:40.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数防抖和节流">
+<meta name="twitter:description" content="针对一些会频繁触发的事件如scroll、resize，如果正常绑定事件处理函数的话，有可能在很短的时间内多次连续触发事件，十分影响性能，因此针对这类事件要进行防抖动或者节流处理">
+  
+    <link rel="alternate" href="/atom.xml" title="DogJun&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DogJun&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-函数防抖和节流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/20/函数防抖和节流/" class="article-date">
+  <time datetime="2017-10-20T01:41:54.000Z" itemprop="datePublished">2017-10-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      函数防抖和节流
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>针对一些会频繁触发的事件如scroll、resize，如果正常绑定事件处理函数的话，有可能在很短的时间内多次连续触发事件，十分影响性能，因此针对这类事件要进行防抖动或者节流处理</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h1><p>函数防抖是限制在下次函数调用之前必须等待一个时间间隔，实现的方法是将若干个函数调用合并成一次，并在给定的时间过去之后仅被调用一次。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span> (<span class="params">fn, delay</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span></div><div class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span></div><div class="line">    clearTimeout(timer)</div><div class="line">    timer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      fn.apply(context, args)</div><div class="line">    &#125;, delay)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'scrolling...'</span>)</div><div class="line">&#125;</div><div class="line">elem.addEventListener(<span class="string">'scroll'</span>, debounce(foo, <span class="number">2000</span>))</div></pre></td></tr></table></figure>
+<p>当不希望非要等到事件停止触发后才执行，而是立刻执行函数，然后等到停止触发n秒后，才可以重新触发执行，可以增加一个immediate参数来设置是否要立即执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span> (<span class="params">func, delay, immediate</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span></div><div class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span></div><div class="line">    <span class="keyword">if</span> (timer) &#123;</div><div class="line">      clearTimeout(timer)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (immediate) &#123;</div><div class="line">      <span class="comment">// 根据距离上次触发操作时间是否到达delay来决定是否要现在执行函数</span></div><div class="line">      <span class="keyword">let</span> doNow = !timer</div><div class="line">      <span class="comment">// 每一次都重新设置timer，就是要保证每一次执行的至少delay秒后才可以执行</span></div><div class="line">      timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        timer = <span class="literal">null</span></div><div class="line">      &#125;,delay)</div><div class="line">      <span class="comment">// 立即执行</span></div><div class="line">      <span class="keyword">if</span> (doNow) &#123;</div><div class="line">        func.apply(context, args)</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      timer = setTimetout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        func.apply(context, args)</div><div class="line">      &#125;, delay)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h1><p>节流是处理类似问题的另一种解决方案，节流函数允许一个函数在规定的时间内只执行一次，它和防抖最大的区别在于，节流函数不管时间触发有多频繁，都会保证在规定的时间内一定会执行一次真正的事件处理函数。</p>
+<p>应用场景：比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次ajax请求，而不是在用户停下滚动操作时才去请求数据。</p>
+<p>主要的实现方法有两种：</p>
+<ul>
+<li>时间戳</li>
+<li>定时器</li>
+</ul>
+<p>时间戳实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span> (<span class="params">func, delay</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> prew = Data.now()</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span></div><div class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span></div><div class="line">    <span class="keyword">let</span> now = Data.now()</div><div class="line">    <span class="keyword">if</span> (now - prev &gt;= delay) &#123;</div><div class="line">      func.apply(context, args)</div><div class="line">      prev = <span class="built_in">Date</span>.now()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当高频事件频繁触发时，如果给事件绑定函数与真正触发事件的间隔如果大于delay，第一次应该会立即执行，而后无论再怎么频繁触发事件，也都只是每delay秒才执行一次，而当最后一次事件触发完毕后，事件也不会再被执行了。</p>
+<p>定时器实现<br>当触发事件的时候，我们设置一个定时器，再触发事件的时候，如果定时器存在，就不执行,直到delay秒后，定时器执行函数，清空定时器，这样就可以设置下个定时器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>  <span class="title">throttle</span> (<span class="params">func, delay</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span></div><div class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span></div><div class="line">    <span class="keyword">if</span> (!timer) &#123;</div><div class="line">      tiemr = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        func.apply(context, args)</div><div class="line">        timer = <span class="literal">null</span></div><div class="line">      &#125;, delay)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以结合时间戳和定时器，完成一个事件触发时立即执行，触发完毕还能执行一次的节流函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span> (<span class="params">func, delay</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span></div><div class="line">  <span class="keyword">let</span> startTime = <span class="built_in">Date</span>.now()</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> curTime = <span class="built_in">Date</span>.now()</div><div class="line">    <span class="keyword">let</span> remaining = delay - (curTime - startTime)</div><div class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span></div><div class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span></div><div class="line"></div><div class="line">    clearTimeout(timer)</div><div class="line">    <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span>) &#123;</div><div class="line">      func.apply(context, args)</div><div class="line">      startTime = <span class="built_in">Date</span>.now()</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      timer = setTimeout(func, remaining)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>需要在每个delay时间中一定会执行一次函数，因此在节流函数内部使用开始时间、当前时间与delay来计算remaining，当remaining&lt;=0时表示该执行函数了，如果还没到时间的话就设定在remaining时间后再触发。当然在remaining这段时间中如果又一次发生事件，那么会取消当前的计时器，并重新计算一个remaining来判断当前状态。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>防止一个事件频繁触发回调函数的方式：</p>
+<ul>
+<li>防抖动：将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。</li>
+<li>节流：使得一定时间内只触发一次函数。<br>它和防抖动最大的区别就是，节流函数不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而防抖动只是在最后一次事件后才触发一次函数。<br>原理是通过判断是否到达一定时间来触发函数，若没到规定时间则使用计时器延后，而下一次事件则会重新设定计时器。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/20/函数防抖和节流/" data-id="cjjsa60vr000vs2uuy9m4bc0n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/05/sticky-footer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sticky footer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/25/CentOS-7-搭建ngrok服务器/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CentOS 7 搭建ngrok服务器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ngrok/">ngrok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/ngrok/" style="font-size: 10px;">ngrok</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/01/webpack深入学习/">webpack深入学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/nodejs深入学习笔记/">nodejs深入学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/24/vue源码解析/">vue源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/01/nginx反向代理和负载均衡/">nginx反向代理和负载均衡</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/18/模块化的前世今生/">模块化的前世今生</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DogJun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>http协议那些事 | DogJun&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议那些事">
+<meta property="og:url" content="http://yoursite.com/2017/12/08/http协议那些事/index.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.35.52.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.51.44.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.42.52.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.43.36.png">
+<meta property="og:updated_time" content="2018-07-19T08:14:40.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http协议那些事">
+<meta name="twitter:description" content="作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。">
+<meta name="twitter:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png">
+  
+    <link rel="alternate" href="/atom.xml" title="DogJun&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">DogJun&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-http协议那些事" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/08/http协议那些事/" class="article-date">
+  <time datetime="2017-12-08T13:49:30.000Z" itemprop="datePublished">2017-12-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      http协议那些事
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="当我们输入网址后发生了什么"><a href="#当我们输入网址后发生了什么" class="headerlink" title="当我们输入网址后发生了什么"></a>当我们输入网址后发生了什么</h1><ol>
+<li>输入网址并回车</li>
+<li>解析域名</li>
+<li>浏览器发送HTTP请求</li>
+<li>服务器处理请求</li>
+<li>服务器返回HTML响应</li>
+<li>浏览器处理HTML页面</li>
+<li>继续请求其他资源<h1 id="什么是HTTP协议"><a href="#什么是HTTP协议" class="headerlink" title="什么是HTTP协议"></a>什么是HTTP协议</h1></li>
+</ol>
+<ul>
+<li>HTTP是超文本传输协议，从www浏览器传输到本地浏览器的 一种传输协议，网站是基于HTTP协议的，例如网站的图片、 CSS、JS等都是基于HTTP协议进行传输的</li>
+<li>HTTP协议是由从客户机到服务器的请求(Request)和从服务器 到客户机的响应(response)进行约束和规范<h1 id="在TCP-IP协议栈中的位置"><a href="#在TCP-IP协议栈中的位置" class="headerlink" title="在TCP/IP协议栈中的位置"></a>在TCP/IP协议栈中的位置</h1><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png" alt="image"></li>
+<li>目前应用版本HTTP 1.1</li>
+<li>HTTP默认端口号为80</li>
+<li>HTTPS默认端口号为443<h1 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h1></li>
+<li>HTTP请求组成:请求行、消息报头、请求正文</li>
+<li>HTTP响应组成:状态行、消息报头、响应正文</li>
+<li>请求行组成:以一个方法符号开头，后面跟着请求的URI和协 议的版本</li>
+<li>状态行组成:服务器HTTP协议的版本，服务器发回的响应状态代码和状态代码的文本描述<h1 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h1><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.35.52.png" alt="image"><h1 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h1><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.51.44.png" alt="image"><h1 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h1></li>
+<li>GET: 请求获取Request-URI所标识的资源</li>
+<li>POST: 在Request-URI所标识的资源后附加新的数据</li>
+<li>HEAD: 请求获取由Request-URI所标识的资源的响应消息报头</li>
+<li>PUT: 请求服务器存储一个资源，并用Request-URI作为其标识</li>
+<li>DELETE: 请求服务器删除Request-URI所标识的资源</li>
+<li>TRACE: 请求服务器回送收到的请求信息，主要用于测试或诊断</li>
+<li>CONNECT: 保留将来使用</li>
+<li>OPTIONS: 请求查询服务器的性能，或者查询与资源相关的选项和需求<h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1>状态代码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</li>
+<li>1xx：指示信息–表示请求已接收，继续处理</li>
+<li>2xx：成功–表示已被成功接收、理解、接受</li>
+<li>3xx：重定向–要完成请求必须进行进一步的操作</li>
+<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
+<li>5xx：服务器端错误–服务器未能实现合法的请求<h1 id="常用的请求报头"><a href="#常用的请求报头" class="headerlink" title="常用的请求报头"></a>常用的请求报头</h1></li>
+<li>Accept请求报头域用于指定客户端接受哪些类型的信息。eg:Accept:image/gif，Accept:text/ htmlAccept-Charset请求报头域用于指定客户端接受的字符集。Accept-Encoding:Accept-Encoding请求报头域类似于Accept，但是它是用于指定可接受的内容编码</li>
+<li>Accept-Language请求报头域类似于Accept，但是它是用于指定一种自然语言</li>
+<li>Authorization请求报头域主要用于证明客户端有权查看某个资源。当浏览器访问一个页面时，如果收 到服务器的响应代码为401(未授权)，可以发送一个包含Authorization请求报头域的请求，要求服务 器对其进行验证</li>
+<li>Host请求报头域主要用于指定被请求资源的Internet主机和端又号，它通常从HTTP URL中提取出来 的，发送请求时，该报头域是必需的</li>
+<li>User-Agent请求报头域允许客户端将它的操作系统、浏览器和其它属性告诉服务器<h1 id="常用的响应报文"><a href="#常用的响应报文" class="headerlink" title="常用的响应报文"></a>常用的响应报文</h1></li>
+<li>Location响应报头域用于重定向接受者到一个新的位置。Location 响应报头域常用在更换域名的时候</li>
+<li>Server响应报头域包含了服务器用来处理请求的软件信息。与User- Agent请求报头域是相对应的</li>
+<li>WWW-Authenticate响应报头域必须被包含在401(未授权的)响应 消息中，客户端收到401响应消息时候，并发送Authorization报头 域请求服务器对其进行验证时，服务端响应报头就包含该报头域<h1 id="实体报头"><a href="#实体报头" class="headerlink" title="实体报头"></a>实体报头</h1></li>
+<li>请求和响应消息都可以传送一个实体。一个实体由实体报头域 和实体正文组成，但并不是说实体报头域和实体正文要在一起 发送，可以只发送实体报头域。实体报头定义了关于实体正文 (eg:有无实体正文)和请求所标识的资源的元信息<h1 id="常用的实体报头"><a href="#常用的实体报头" class="headerlink" title="常用的实体报头"></a>常用的实体报头</h1></li>
+<li>Content-Encoding实体报头域被用作媒体类型的修饰符，它的值指示了已经被应用到实体正文 的附加内容的编码，因而要获得Content-Type报头域中所引用的媒体类型，必须采用相应的解 码机制</li>
+<li>Content-Language实体报头域描述了资源所用的自然语言</li>
+<li>Content-Length实体报头域用于指明实体正文的长度，以字节方式存储的十进制数字来表示</li>
+<li>Content-Type实体报头域用语指明发送给接收者的实体正文的媒体类型</li>
+<li>Last-Modified实体报头域用于指示资源的最后修改日期和时间</li>
+<li>Expires实体报头域给出响应过期的日期和时间<h1 id="cookies和session"><a href="#cookies和session" class="headerlink" title="cookies和session"></a>cookies和session</h1></li>
+<li>Cookies是保存在客户端的小段文本，随客户端点每一个请求发送该url下的所有cookies到服务器端</li>
+<li>Session则保存服务器段，通过唯一的值sessionID来区别每一个用户。SessionID随每个连接请求发送到服务器，服务器根据sessionID来识别客户端，再通过session 的key获取session值<h1 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h1></li>
+<li>浏览器缓存机制 - 浏览器第一次请求<br><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.42.52.png" alt="image"></li>
+<li>浏览器缓存机制 - 浏览器再次请求<br><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.43.36.png" alt="image"><h1 id="Etag-If-None-Match策略"><a href="#Etag-If-None-Match策略" class="headerlink" title="Etag/If-None-Match策略"></a>Etag/If-None-Match策略</h1></li>
+<li>Etag: web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识(生成规则由服务器决定)</li>
+<li>If-None-Match:当资源过期时(使用Cache-Control标识的max-age)，发现源具有Etage声明，则再次向web服务器请求时带 上头If-None-Match(Etag的值)。web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决 定返回200或304<h1 id="Last-Modified-If-Modified-Since策略"><a href="#Last-Modified-If-Modified-Since策略" class="headerlink" title="Last-Modified/If-Modified-Since策略"></a>Last-Modified/If-Modified-Since策略</h1></li>
+<li>Last-Modified:标示这个响应资源的最后修改时间。web服务器在响应请求时，告诉浏览器资源的最后修改时间</li>
+<li>If-Modified-Since:当资源过期时(使用Cache-Control标识的max-age)，发 现资源具有Last-Modified声明，则再次向web服务器请求时带上头 If-Modified-Since，表示请求时间。web服务器收到请求后发现有头If-Modifed- Since 则与被请求资源的最后修改时间进行比对。若最后修改时间较新，说明资源又被改动过，则响应整片资源内容(写在响应消息包体内)，HTTP200;若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache<h1 id="保证HTTP的安全"><a href="#保证HTTP的安全" class="headerlink" title="保证HTTP的安全"></a>保证HTTP的安全</h1></li>
+<li>加密数据</li>
+<li>安全连接HTTPS协议</li>
+<li>HTTP2.0</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/08/http协议那些事/" data-id="cjjsa60v50006s2uu68gvomgs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/11/作用域和作用域链/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          作用域和作用域链
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/05/sticky-footer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sticky footer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ngrok/">ngrok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/ngrok/" style="font-size: 10px;">ngrok</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/01/webpack深入学习/">webpack深入学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/nodejs深入学习笔记/">nodejs深入学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/24/vue源码解析/">vue源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/01/nginx反向代理和负载均衡/">nginx反向代理和负载均衡</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/18/模块化的前世今生/">模块化的前世今生</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DogJun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
