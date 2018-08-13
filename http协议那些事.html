@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="http," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议那些事">
+<meta property="og:url" content="https://blog.dogjun.com/http协议那些事.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.35.52.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.51.44.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.42.52.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.43.36.png">
+<meta property="og:updated_time" content="2018-08-13T10:04:02.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http协议那些事">
+<meta name="twitter:description" content="作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。">
+<meta name="twitter:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.dogjun.com/http协议那些事.html"/>
+
+
+
+
+
+  <title>http协议那些事 | DogJun's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?35b8f63164bc69129a262db4ce33dcd2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DogJun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">DogJun个人技术博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/http协议那些事.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DogJun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DogJun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">http协议那些事</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T21:49:30+08:00">
+                2017-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为一个合格的前端，不了解http协议是不被允许的，给人感觉就是很low。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="当我们输入网址后发生了什么"><a href="#当我们输入网址后发生了什么" class="headerlink" title="当我们输入网址后发生了什么"></a>当我们输入网址后发生了什么</h1><ol>
+<li>输入网址并回车</li>
+<li>解析域名</li>
+<li>浏览器发送HTTP请求</li>
+<li>服务器处理请求</li>
+<li>服务器返回HTML响应</li>
+<li>浏览器处理HTML页面</li>
+<li>继续请求其他资源<h1 id="什么是HTTP协议"><a href="#什么是HTTP协议" class="headerlink" title="什么是HTTP协议"></a>什么是HTTP协议</h1></li>
+</ol>
+<ul>
+<li>HTTP是超文本传输协议，从www浏览器传输到本地浏览器的 一种传输协议，网站是基于HTTP协议的，例如网站的图片、 CSS、JS等都是基于HTTP协议进行传输的</li>
+<li>HTTP协议是由从客户机到服务器的请求(Request)和从服务器 到客户机的响应(response)进行约束和规范<h1 id="在TCP-IP协议栈中的位置"><a href="#在TCP-IP协议栈中的位置" class="headerlink" title="在TCP/IP协议栈中的位置"></a>在TCP/IP协议栈中的位置</h1><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png" alt="image"></li>
+<li>目前应用版本HTTP 1.1</li>
+<li>HTTP默认端口号为80</li>
+<li>HTTPS默认端口号为443<h1 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h1></li>
+<li>HTTP请求组成:请求行、消息报头、请求正文</li>
+<li>HTTP响应组成:状态行、消息报头、响应正文</li>
+<li>请求行组成:以一个方法符号开头，后面跟着请求的URI和协 议的版本</li>
+<li>状态行组成:服务器HTTP协议的版本，服务器发回的响应状态代码和状态代码的文本描述<h1 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h1><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.35.52.png" alt="image"><h1 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h1><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.51.44.png" alt="image"><h1 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h1></li>
+<li>GET: 请求获取Request-URI所标识的资源</li>
+<li>POST: 在Request-URI所标识的资源后附加新的数据</li>
+<li>HEAD: 请求获取由Request-URI所标识的资源的响应消息报头</li>
+<li>PUT: 请求服务器存储一个资源，并用Request-URI作为其标识</li>
+<li>DELETE: 请求服务器删除Request-URI所标识的资源</li>
+<li>TRACE: 请求服务器回送收到的请求信息，主要用于测试或诊断</li>
+<li>CONNECT: 保留将来使用</li>
+<li>OPTIONS: 请求查询服务器的性能，或者查询与资源相关的选项和需求<h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1>状态代码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</li>
+<li>1xx：指示信息–表示请求已接收，继续处理</li>
+<li>2xx：成功–表示已被成功接收、理解、接受</li>
+<li>3xx：重定向–要完成请求必须进行进一步的操作</li>
+<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
+<li>5xx：服务器端错误–服务器未能实现合法的请求<h1 id="常用的请求报头"><a href="#常用的请求报头" class="headerlink" title="常用的请求报头"></a>常用的请求报头</h1></li>
+<li>Accept请求报头域用于指定客户端接受哪些类型的信息。eg:Accept:image/gif，Accept:text/ htmlAccept-Charset请求报头域用于指定客户端接受的字符集。Accept-Encoding:Accept-Encoding请求报头域类似于Accept，但是它是用于指定可接受的内容编码</li>
+<li>Accept-Language请求报头域类似于Accept，但是它是用于指定一种自然语言</li>
+<li>Authorization请求报头域主要用于证明客户端有权查看某个资源。当浏览器访问一个页面时，如果收 到服务器的响应代码为401(未授权)，可以发送一个包含Authorization请求报头域的请求，要求服务 器对其进行验证</li>
+<li>Host请求报头域主要用于指定被请求资源的Internet主机和端又号，它通常从HTTP URL中提取出来 的，发送请求时，该报头域是必需的</li>
+<li>User-Agent请求报头域允许客户端将它的操作系统、浏览器和其它属性告诉服务器<h1 id="常用的响应报文"><a href="#常用的响应报文" class="headerlink" title="常用的响应报文"></a>常用的响应报文</h1></li>
+<li>Location响应报头域用于重定向接受者到一个新的位置。Location 响应报头域常用在更换域名的时候</li>
+<li>Server响应报头域包含了服务器用来处理请求的软件信息。与User- Agent请求报头域是相对应的</li>
+<li>WWW-Authenticate响应报头域必须被包含在401(未授权的)响应 消息中，客户端收到401响应消息时候，并发送Authorization报头 域请求服务器对其进行验证时，服务端响应报头就包含该报头域<h1 id="实体报头"><a href="#实体报头" class="headerlink" title="实体报头"></a>实体报头</h1></li>
+<li>请求和响应消息都可以传送一个实体。一个实体由实体报头域 和实体正文组成，但并不是说实体报头域和实体正文要在一起 发送，可以只发送实体报头域。实体报头定义了关于实体正文 (eg:有无实体正文)和请求所标识的资源的元信息<h1 id="常用的实体报头"><a href="#常用的实体报头" class="headerlink" title="常用的实体报头"></a>常用的实体报头</h1></li>
+<li>Content-Encoding实体报头域被用作媒体类型的修饰符，它的值指示了已经被应用到实体正文 的附加内容的编码，因而要获得Content-Type报头域中所引用的媒体类型，必须采用相应的解 码机制</li>
+<li>Content-Language实体报头域描述了资源所用的自然语言</li>
+<li>Content-Length实体报头域用于指明实体正文的长度，以字节方式存储的十进制数字来表示</li>
+<li>Content-Type实体报头域用语指明发送给接收者的实体正文的媒体类型</li>
+<li>Last-Modified实体报头域用于指示资源的最后修改日期和时间</li>
+<li>Expires实体报头域给出响应过期的日期和时间<h1 id="cookies和session"><a href="#cookies和session" class="headerlink" title="cookies和session"></a>cookies和session</h1></li>
+<li>Cookies是保存在客户端的小段文本，随客户端点每一个请求发送该url下的所有cookies到服务器端</li>
+<li>Session则保存服务器段，通过唯一的值sessionID来区别每一个用户。SessionID随每个连接请求发送到服务器，服务器根据sessionID来识别客户端，再通过session 的key获取session值<h1 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h1></li>
+<li>浏览器缓存机制 - 浏览器第一次请求<br><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.42.52.png" alt="image"></li>
+<li>浏览器缓存机制 - 浏览器再次请求<br><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.43.36.png" alt="image"><h1 id="Etag-If-None-Match策略"><a href="#Etag-If-None-Match策略" class="headerlink" title="Etag/If-None-Match策略"></a>Etag/If-None-Match策略</h1></li>
+<li>Etag: web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识(生成规则由服务器决定)</li>
+<li>If-None-Match:当资源过期时(使用Cache-Control标识的max-age)，发现源具有Etage声明，则再次向web服务器请求时带 上头If-None-Match(Etag的值)。web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决 定返回200或304<h1 id="Last-Modified-If-Modified-Since策略"><a href="#Last-Modified-If-Modified-Since策略" class="headerlink" title="Last-Modified/If-Modified-Since策略"></a>Last-Modified/If-Modified-Since策略</h1></li>
+<li>Last-Modified:标示这个响应资源的最后修改时间。web服务器在响应请求时，告诉浏览器资源的最后修改时间</li>
+<li>If-Modified-Since:当资源过期时(使用Cache-Control标识的max-age)，发 现资源具有Last-Modified声明，则再次向web服务器请求时带上头 If-Modified-Since，表示请求时间。web服务器收到请求后发现有头If-Modifed- Since 则与被请求资源的最后修改时间进行比对。若最后修改时间较新，说明资源又被改动过，则响应整片资源内容(写在响应消息包体内)，HTTP200;若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache<h1 id="保证HTTP的安全"><a href="#保证HTTP的安全" class="headerlink" title="保证HTTP的安全"></a>保证HTTP的安全</h1></li>
+<li>加密数据</li>
+<li>安全连接HTTPS协议</li>
+<li>HTTP2.0</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sticky-footer.html" rel="next" title="sticky footer">
+                <i class="fa fa-chevron-left"></i> sticky footer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/作用域和作用域链.html" rel="prev" title="作用域和作用域链">
+                作用域和作用域链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DogJun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当我们输入网址后发生了什么"><span class="nav-number"></span> <span class="nav-text">当我们输入网址后发生了什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是HTTP协议"><span class="nav-number"></span> <span class="nav-text">什么是HTTP协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在TCP-IP协议栈中的位置"><span class="nav-number"></span> <span class="nav-text">在TCP/IP协议栈中的位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求与响应"><span class="nav-number"></span> <span class="nav-text">请求与响应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求报文"><span class="nav-number"></span> <span class="nav-text">请求报文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应报文"><span class="nav-number"></span> <span class="nav-text">响应报文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求方法"><span class="nav-number"></span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP状态码"><span class="nav-number"></span> <span class="nav-text">HTTP状态码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的请求报头"><span class="nav-number"></span> <span class="nav-text">常用的请求报头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的响应报文"><span class="nav-number"></span> <span class="nav-text">常用的响应报文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实体报头"><span class="nav-number"></span> <span class="nav-text">实体报头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的实体报头"><span class="nav-number"></span> <span class="nav-text">常用的实体报头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookies和session"><span class="nav-number"></span> <span class="nav-text">cookies和session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器缓存机制"><span class="nav-number"></span> <span class="nav-text">浏览器缓存机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Etag-If-None-Match策略"><span class="nav-number"></span> <span class="nav-text">Etag/If-None-Match策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Last-Modified-If-Modified-Since策略"><span class="nav-number"></span> <span class="nav-text">Last-Modified/If-Modified-Since策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#保证HTTP的安全"><span class="nav-number"></span> <span class="nav-text">保证HTTP的安全</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DogJun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</html>
