@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://blog.dogjun.com/%E5%B8%B8%E7%94%A8url%E5%8F%82%E6%95%B0%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95.html</loc>
-    <lastmod>2018-08-16T08:44:31.700Z</lastmod>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
     <data>
         <display>
         <title>常用url参数操作方法</title>
@@ -23,308 +23,20 @@
     </url>
 
     
-    
-    
-    
-    
-    
-    
   <url>
-    <loc>https://blog.dogjun.com/%E8%BE%93%E5%85%A5%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%8F%B7%E6%AF%8F%E5%9B%9B%E4%BD%8D%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%A9%BA%E6%A0%BC.html</loc>
-    <lastmod>2018-08-16T08:44:31.700Z</lastmod>
+    <loc>https://blog.dogjun.com/CentOS-7-%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
     <data>
         <display>
-        <title>输入银行卡号每四位自动添加空格</title>
-        <pubTime>2017-09-05T12:54:45.000Z</pubTime>
+        <title>CentOS 7 搭建ngrok服务器</title>
+        <pubTime>2017-09-25T02:22:57.000Z</pubTime>
         
-        <tag>javascript</tag>
+        <tag>ngrok</tag>
          
          
            
              
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F.html</loc>
-    <lastmod>2018-08-16T08:44:31.700Z</lastmod>
-    <data>
-        <display>
-        <title>模块化的前世今生</title>
-        <pubTime>2018-01-18T14:13:27.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E4%B9%8B%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%8F%98%E5%8C%96.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>动态数据绑定之监听对象变化</title>
-        <pubTime>2017-09-05T14:01:54.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>作用域和作用域链</title>
-        <pubTime>2017-12-11T02:47:30.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>小程序开发经验总结</title>
-        <pubTime>2018-08-13T07:34:14.000Z</pubTime>
-        
-        <tag>小程序</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/IE8%E5%92%8CIE9%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E5%85%BC%E5%AE%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>IE8和IE9跨域请求数据兼容性解决方案</title>
-        <pubTime>2017-09-05T13:49:14.000Z</pubTime>
-        
-        <tag>跨域</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/webpack%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>webpack深入学习</title>
-        <pubTime>2018-04-01T15:24:49.000Z</pubTime>
-        
-        <tag>webpack</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/sticky-footer.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>sticky footer</title>
-        <pubTime>2017-11-05T14:11:30.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/vue%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>vue源码解析</title>
-        <pubTime>2018-02-24T15:35:17.000Z</pubTime>
-        
-        <tag>vue</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>函数式编程</title>
-        <pubTime>2018-01-10T13:29:20.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>函数防抖和节流</title>
-        <pubTime>2017-10-20T01:41:54.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/vue-cli-webpack-%E9%85%8D%E7%BD%AE%E8%A7%A3%E6%9E%90.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>vue-cli webpack 配置解析</title>
-        <pubTime>2017-08-24T12:56:29.000Z</pubTime>
-        
-        <tag>webpack</tag>
-         
-        <tag>vue-cli</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/pdf.js%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>pdf.js使用总结</title>
-        <pubTime>2017-09-06T08:06:40.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/nodejs%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>nodejs深入学习笔记</title>
-        <pubTime>2018-03-08T14:21:14.000Z</pubTime>
-        
-        <tag>node</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.dogjun.com/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
-    <data>
-        <display>
-        <title>nginx反向代理和负载均衡</title>
-        <pubTime>2018-02-01T15:41:55.000Z</pubTime>
-        
-        <tag>nginx</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="https://blog.dogjun.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+              <breadCrumb title="微信开发" url="https://blog.dogjun.com/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
           
         </display>
     </data>
@@ -333,7 +45,7 @@
     
   <url>
     <loc>https://blog.dogjun.com/http%E5%8D%8F%E8%AE%AE%E9%82%A3%E4%BA%9B%E4%BA%8B.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
     <data>
         <display>
         <title>http协议那些事</title>
@@ -353,7 +65,7 @@
     
   <url>
     <loc>https://blog.dogjun.com/javascript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
     <data>
         <display>
         <title>javascript语言精粹</title>
@@ -372,22 +84,310 @@
 
     
   <url>
-    <loc>https://blog.dogjun.com/CentOS-7-%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8.html</loc>
-    <lastmod>2018-08-16T08:44:31.696Z</lastmod>
+    <loc>https://blog.dogjun.com/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
     <data>
         <display>
-        <title>CentOS 7 搭建ngrok服务器</title>
-        <pubTime>2017-09-25T02:22:57.000Z</pubTime>
+        <title>nginx反向代理和负载均衡</title>
+        <pubTime>2018-02-01T15:41:55.000Z</pubTime>
         
-        <tag>ngrok</tag>
+        <tag>nginx</tag>
          
          
            
              
-              <breadCrumb title="微信开发" url="https://blog.dogjun.com/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+              <breadCrumb title="服务器" url="https://blog.dogjun.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
           
         </display>
     </data>
     </url>
 
+    
+  <url>
+    <loc>https://blog.dogjun.com/nodejs%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>nodejs深入学习笔记</title>
+        <pubTime>2018-03-08T14:21:14.000Z</pubTime>
+        
+        <tag>node</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/pdf.js%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>pdf.js使用总结</title>
+        <pubTime>2017-09-06T08:06:40.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/sticky-footer.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>sticky footer</title>
+        <pubTime>2017-11-05T14:11:30.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/webpack%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>webpack深入学习</title>
+        <pubTime>2018-04-01T15:24:49.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>作用域和作用域链</title>
+        <pubTime>2017-12-11T02:47:30.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>函数防抖和节流</title>
+        <pubTime>2017-10-20T01:41:54.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>小程序开发经验总结</title>
+        <pubTime>2018-08-13T07:34:14.000Z</pubTime>
+        
+        <tag>小程序</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/IE8%E5%92%8CIE9%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E5%85%BC%E5%AE%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>IE8和IE9跨域请求数据兼容性解决方案</title>
+        <pubTime>2017-09-05T13:49:14.000Z</pubTime>
+        
+        <tag>跨域</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>模块化的前世今生</title>
+        <pubTime>2018-01-18T14:13:27.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E8%BE%93%E5%85%A5%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%8F%B7%E6%AF%8F%E5%9B%9B%E4%BD%8D%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%A9%BA%E6%A0%BC.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>输入银行卡号每四位自动添加空格</title>
+        <pubTime>2017-09-05T12:54:45.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/vue%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>vue源码解析</title>
+        <pubTime>2018-02-24T15:35:17.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>函数式编程</title>
+        <pubTime>2018-01-10T13:29:20.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E4%B9%8B%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%8F%98%E5%8C%96.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>动态数据绑定之监听对象变化</title>
+        <pubTime>2017-09-05T14:01:54.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.dogjun.com/vue-cli-webpack-%E9%85%8D%E7%BD%AE%E8%A7%A3%E6%9E%90.html</loc>
+    <lastmod>2018-08-16T09:04:42.049Z</lastmod>
+    <data>
+        <display>
+        <title>vue-cli webpack 配置解析</title>
+        <pubTime>2017-08-24T12:56:29.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>vue-cli</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+    
+    
 </urlset>
