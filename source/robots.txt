@@ -10,5 +10,5 @@ Disallow: /js/
 Disallow: /css/
 Disallow: /fonts/
 Disallow: /vendors/
-Sitemap: https://blog.dogjun.com/sitemap.xml
-Sitemap: https://blog.dogjun.com/baidusitemap.xml
+Sitemap: http://blog.dogjun.com/sitemap.xml
+Sitemap: http://blog.dogjun.com/baidusitemap.xml
