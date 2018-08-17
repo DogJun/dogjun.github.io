@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="ngrok," />
+  <meta name="keywords" content="node," />
 
 
 
@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
-<meta name="keywords" content="ngrok">
+<meta name="description" content="之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。">
+<meta name="keywords" content="node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7 搭建ngrok服务器">
-<meta property="og:url" content="https://blog.dogjun.com/CentOS-7-搭建ngrok服务器.html">
+<meta property="og:title" content="nodejs深入学习笔记">
+<meta property="og:url" content="https://blog.dogjun.com/archives/9dbe8f47.html">
 <meta property="og:site_name" content="DogJun&#39;s Blog">
-<meta property="og:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta property="og:description" content="之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-16T09:04:42.049Z">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.06.09.png">
+<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.11.32.png">
+<meta property="og:updated_time" content="2018-08-17T02:32:11.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7 搭建ngrok服务器">
-<meta name="twitter:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta name="twitter:title" content="nodejs深入学习笔记">
+<meta name="twitter:description" content="之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。">
+<meta name="twitter:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.06.09.png">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.dogjun.com/CentOS-7-搭建ngrok服务器.html"/>
+  <link rel="canonical" href="https://blog.dogjun.com/archives/9dbe8f47.html"/>
 
 
 
 
 
-  <title>CentOS 7 搭建ngrok服务器 | DogJun's Blog</title>
+  <title>nodejs深入学习笔记 | DogJun's Blog</title>
   
 
 
@@ -173,7 +176,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">DogJun个人技术博客</h1>
+        <h1 class="site-subtitle" itemprop="description">DogJun个人博客</h1>
       
   </div>
 
@@ -245,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/CentOS-7-搭建ngrok服务器.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/archives/9dbe8f47.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DogJun">
@@ -262,7 +265,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS 7 搭建ngrok服务器</h2>
+          <h2 class="post-title" itemprop="name headline">nodejs深入学习笔记</h2>
         
 
         <div class="post-meta">
@@ -274,8 +277,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T10:22:57+08:00">
-                2017-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T22:21:14+08:00">
+                2018-03-08
               </time>
             
 
@@ -297,8 +300,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信开发/" itemprop="url" rel="index">
-                    <span itemprop="name">微信开发</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -334,30 +337,59 @@
       
 
       
-        <p>ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><p>需要一台云服务器和一个域名解析到该IP</p>
-<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><p>1、安装 gcc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div></pre></td></tr></table></figure></p>
-<p>2、安装 git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git</div></pre></td></tr></table></figure></p>
-<p>3、安装 go 语言环境</p>
-<p>到网站<a href="https://golang.org/dl/查找最新的版本链接" target="_blank" rel="external">https://golang.org/dl/查找最新的版本链接</a></p>
-<p>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
-<p>解压安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -C /usr/local/ -zxvf go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
-<p>添加环境变量,编辑：vi /etc/profile，在最后添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#go lang</div><div class="line">export GOROOT=/usr/local/go</div><div class="line">export PATH=$PATH:$GOROOT/bin</div></pre></td></tr></table></figure></p>
-<p>使环境变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure></p>
-<p>检查是否安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go version</div></pre></td></tr></table></figure></p>
-<p>输出：go version go1.8 linux/amd64表示安装成功</p>
-<h1 id="在服务器搭建-ngrok-服务"><a href="#在服务器搭建-ngrok-服务" class="headerlink" title="在服务器搭建 ngrok 服务"></a>在服务器搭建 ngrok 服务</h1><p>1、下载 ngrok 源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/src</div><div class="line">git clone https://github.com/inconshreveable/ngrok.git</div></pre></td></tr></table></figure></p>
-<p>2、生成证书<br>在自生成证书时需要一个解析到服务器上的主域名，现在以”dogjun.com”为例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd ngrok</div><div class="line">openssl genrsa -out rootCA.key 2048</div><div class="line">openssl req -x509 -new -nodes -key rootCA.key -subj &quot;/CN=dogjun.com&quot; -days 5000 -out rootCA.pem</div><div class="line">openssl genrsa -out device.key 2048</div><div class="line">openssl req -new -key device.key -subj &quot;/CN=dogjun.com&quot; -out device.csr</div><div class="line">openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</div></pre></td></tr></table></figure></p>
-<p>将新生成的证书，替换掉assets/client/tls下的证书<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yes|cp rootCA.pem assets/client/tls/ngrokroot.crt</div><div class="line">yes|cp device.crt assets/server/tls/snakeoil.crt</div><div class="line">yes|cp device.key assets/server/tls/snakeoil.key</div></pre></td></tr></table></figure></p>
-<p>3、编译生成ngrokd（服务端）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是交叉编译，linux系统GOOS=linux,64位系统GOARCH=amd64，32位系统GOARCH=386</div><div class="line">#当前系统可用go env查看</div><div class="line">GOOS=linux GOARCH=amd64 make release-server</div></pre></td></tr></table></figure></p>
-<p>编译成功后在当前目录的bin目录下可找到ngrokd文件</p>
-<p>启动服务端(/usr/local/src/ngrok目录下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;uboff.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8081&quot; -tunnelAddr=&quot;:4443&quot;</div></pre></td></tr></table></figure></p>
-<p>后台运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup ./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;ngrok.dogjun.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8082&quot; -tunnelAddr=&quot;:4443&quot; &amp;</div></pre></td></tr></table></figure></p>
-<p>出现下面信息，启动成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [registry] [tun] No affinity cache specified</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public http connections on [::]:80</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public https connections on [::]:8081</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for control and proxy connections on [::]:4443</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [metrics] Reporting every 30 seconds</div></pre></td></tr></table></figure></p>
-<p>4、编译生成ngrok（客户端）<br>这里生成windows下的客户端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GOOS=windows GOARCH=amd64 make release-client</div></pre></td></tr></table></figure></p>
-<p>成功会在bin目录下看到windows_amd64文件夹，复制到windows电脑上即可启动<br>在windows_amd64目录下新建一个ngrok.cfg文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server_addr: &quot;ngrok.dogjun.com:4443&quot;</div><div class="line">trust_host_root_certs: false</div></pre></td></tr></table></figure></p>
-<p>然后就可以启动客户端,我已经把windows_amd64文件夹下载到E盘下，打开CMD输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ngrok -subdomain hwj -config=ngrok.cfg 80</div></pre></td></tr></table></figure></p>
-<p>看到下面信息则启动成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Tunnel Status                 online</div><div class="line">Version                       1.7/1.7</div><div class="line">Forwarding                    http://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Forwarding                    https://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Web Interface                 127.0.0.1:4040</div><div class="line"># Conn                        1</div><div class="line">Avg Conn Time                 0.00ms</div></pre></td></tr></table></figure></p>
+        <p>之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="NodeJS异步IO原理浅析及优化方案"><a href="#NodeJS异步IO原理浅析及优化方案" class="headerlink" title="NodeJS异步IO原理浅析及优化方案"></a>NodeJS异步IO原理浅析及优化方案</h1><ul>
+<li>异步IO的好处<ul>
+<li>前端可以通过异步IO可以消除UI阻塞</li>
+<li>假设请求资源A的时间为M，请求资源B的时间为N，那么同步的请求耗时为M+N，如果采用异步方式占用时间为Max（M，N）</li>
+<li>随着业务的复杂，会引入分布式系统，时间会线性的增加，M+N+…和Max(M,N,…)，这会放大同步和异步之间的差异</li>
+<li>I/O是昂贵的，分布式I/O是更昂贵的</li>
+<li>NodeJS适用于IO密集型不适用CPU密集型</li>
+</ul>
+</li>
+<li><p>node如何实现一个sleep</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>)</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'world!'</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span> (<span class="params">ms</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, ms))</div><div class="line">&#125;</div><div class="line">test()</div></pre></td></tr></table></figure>
+</li>
+<li><p>内存管理与优化</p>
+<ul>
+<li>V8垃圾回收机制<ul>
+<li>Node使用Javascript在服务端操作大内存对象受到了一定的限制，64位系统下约为1.4GB，32位操作系统下是0.7GB</li>
+<li>Process.memoryUsage -&gt; rss 进程常驻内存 heapTotal 已申请的堆内存 heapUsed 已使用的内存 （单位都是字节）</li>
+<li>V8的垃圾回收策略主要基于分代式垃圾回收机制。在自动垃圾回收的演变过程中，人们发现没有一种垃圾回收算法能够胜任所有场景。V8中内存分为新生代和老生代两代。新生代为存活时间较短对象，老生代为存活时间较长的对象</li>
+</ul>
+</li>
+<li>Scavenge算法<ul>
+<li>在分代基础上，新生代的对象主要是通过Scavenge算法进行垃圾回收，再具体实现时主要采用Cheney算法。Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将内存一分为二，每一个空间称为semispace。这两个semispace中一个处于使用，一个处于闲置。处于使用的称之为From，闲置的称之为To，分配对象时先分配到From，当开始进行垃圾回收时，检查From存活对象复制到To。非存活被释放。然后互换位置。再次进行回收，发现被回收过直接晋升，或者发现To空间已经使用了超过25%。它的缺点是只能使用堆内存的一半，这是一个典型的空间换时间的办法，但是新生代声明周期较短，恰恰就适合这个算法。</li>
+<li><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.06.09.png" alt="image"></li>
+</ul>
+</li>
+<li>Mark-Sweep &amp; Mark-compact<ul>
+<li>V8老生代主要采用Mark-Sweep和Mark-compact，在使用Scavenge不合适，一个是对象较多需要复制量太大而且还是没能解决空间问题。Mark-Sweep是标记清除，标记那些死亡的对象，然后清除。但是清除过后出现内存不连续的情况，所以我们要使用Mark-compact,它是基于Mark-Sweep演变而来的，它将活着的对象移到一边，移动完成后，直接清理边界外的内存。当CPU空间不足的时候会非常的高校。V8后续还引入了延迟处理，增量处理，并计划引入并行标记处理。</li>
+<li><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.11.32.png" alt="image"></li>
+</ul>
+</li>
+<li>常见内存泄露问题<ul>
+<li>无限制增长的数组</li>
+<li>无限制设置属性和值</li>
+<li>任何模块内的私有变量和方法均是永驻的内存的（需要手动 a=null）</li>
+<li>大循环，无GC机会</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PM2<ul>
+<li>pm2是一个带有负载均衡功能的Node应用的进程管理器，可以把你的独立代码利用全部的服务器上的所有cpu，并保证进程永远都是活着，0秒的重载。</li>
+<li>内建负载均衡（使用Node cluster集群模块）</li>
+<li>后台运行</li>
+<li>0秒停机重载</li>
+<li>具有Ubuntu和CentOS的启动脚本</li>
+<li>停止不稳定的进程（避免无限循环）</li>
+<li>控制台检测</li>
+<li>提供HTTP API</li>
+<li>远程控制和实时的接口API（Nodejs模块，允许和PM2进程管理器交互）</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -375,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ngrok/" rel="tag"># ngrok</a>
+            <a href="/tags/node/" rel="tag"><i class="fa fa-tag"></i> node</a>
           
         </div>
       
@@ -388,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/pdf.js使用总结.html" rel="next" title="pdf.js使用总结">
-                <i class="fa fa-chevron-left"></i> pdf.js使用总结
+              <a href="/archives/5a55af92.html" rel="next" title="vue源码解析">
+                <i class="fa fa-chevron-left"></i> vue源码解析
               </a>
             
           </div>
@@ -398,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/函数防抖和节流.html" rel="prev" title="函数防抖和节流">
-                函数防抖和节流 <i class="fa fa-chevron-right"></i>
+              <a href="/archives/54f4a807.html" rel="prev" title="webpack深入学习">
+                webpack深入学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前提条件"><span class="nav-number"></span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境安装"><span class="nav-number"></span> <span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在服务器搭建-ngrok-服务"><span class="nav-number"></span> <span class="nav-text">在服务器搭建 ngrok 服务</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NodeJS异步IO原理浅析及优化方案"><span class="nav-number"></span> <span class="nav-text">NodeJS异步IO原理浅析及优化方案</span></a></div>
             
 
           </div>

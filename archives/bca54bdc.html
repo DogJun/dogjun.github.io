@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
-<meta name="keywords" content="javascript">
+<meta name="description" content="web项目部署一般都少不了nginx做反向代理和负载均衡，最近搞了三台服务器玩了一下，对一些知识点做个总结记录…">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pdf.js使用总结">
-<meta property="og:url" content="https://blog.dogjun.com/pdf.js使用总结.html">
+<meta property="og:title" content="nginx反向代理和负载均衡">
+<meta property="og:url" content="https://blog.dogjun.com/archives/bca54bdc.html">
 <meta property="og:site_name" content="DogJun&#39;s Blog">
-<meta property="og:description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
+<meta property="og:description" content="web项目部署一般都少不了nginx做反向代理和负载均衡，最近搞了三台服务器玩了一下，对一些知识点做个总结记录…">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-16T09:04:42.049Z">
+<meta property="og:updated_time" content="2018-08-17T02:32:11.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pdf.js使用总结">
-<meta name="twitter:description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
+<meta name="twitter:title" content="nginx反向代理和负载均衡">
+<meta name="twitter:description" content="web项目部署一般都少不了nginx做反向代理和负载均衡，最近搞了三台服务器玩了一下，对一些知识点做个总结记录…">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.dogjun.com/pdf.js使用总结.html"/>
+  <link rel="canonical" href="https://blog.dogjun.com/archives/bca54bdc.html"/>
 
 
 
 
 
-  <title>pdf.js使用总结 | DogJun's Blog</title>
+  <title>nginx反向代理和负载均衡 | DogJun's Blog</title>
   
 
 
@@ -173,7 +173,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">DogJun个人技术博客</h1>
+        <h1 class="site-subtitle" itemprop="description">DogJun个人博客</h1>
       
   </div>
 
@@ -245,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/pdf.js使用总结.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/archives/bca54bdc.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DogJun">
@@ -262,7 +262,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">pdf.js使用总结</h2>
+          <h2 class="post-title" itemprop="name headline">nginx反向代理和负载均衡</h2>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T16:06:40+08:00">
-                2017-09-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T23:41:55+08:00">
+                2018-02-01
               </time>
             
 
@@ -297,8 +297,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
                   </a>
                 </span>
 
@@ -334,12 +334,49 @@
       
 
       
-        <p>由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="一个简单的demo"><a href="#一个简单的demo" class="headerlink" title="一个简单的demo"></a>一个简单的demo</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    #pdf-container&#123;</span></div><div class="line"><span class="undefined">      width: 1000px;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//mozilla.github.io/pdf.js/build/pdf.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"pdf-container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pdfUrl 为 pdf 文件地址</span></div><div class="line">PDFJS.getDocument(pdfUrl).then(<span class="function"><span class="keyword">function</span>(<span class="params">pdf</span>) </span>&#123;</div><div class="line">  <span class="comment">// 显示所有页数</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> pageNum = <span class="number">1</span>; pageNum &lt;= pdf.numPages; ++pageNum) &#123;</div><div class="line">    pdf.getPage(pageNum).then(<span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</div><div class="line">      <span class="comment">// you can now use *page* here</span></div><div class="line"></div><div class="line">      <span class="keyword">var</span> scale = <span class="number">3</span>;</div><div class="line">      <span class="keyword">var</span> viewport = page.getViewport(<span class="number">1.5</span>);</div><div class="line"></div><div class="line">      <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</div><div class="line">      <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line">      canvas.height = viewport.height;</div><div class="line">      canvas.width = <span class="number">1000</span>;</div><div class="line"></div><div class="line">      <span class="keyword">var</span> renderContext = &#123;</div><div class="line">        canvasContext: context,</div><div class="line">        viewport: viewport</div><div class="line">      &#125;;</div><div class="line">      page.render(renderContext);</div><div class="line"></div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'pdf-container'</span>).appendChild(canvas);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>项目开发过程中发现pdf中的电子签章不显示，控制台警告如下：<br>Warning: Unimplemented widget field type “Sig”, falling back to base field type.</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在pdf.worker.js中有这样一段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 行号： 40277</span></div><div class="line"><span class="comment">// 可自行根据关键字查找到此代码</span></div><div class="line"><span class="comment">// Hide unsupported Widget signatures.</span></div><div class="line"><span class="keyword">if</span> (data.fieldType === <span class="string">'Sig'</span>) &#123;</div><div class="line">  <span class="comment">//WGZ</span></div><div class="line">  <span class="comment">//warn('unimplemented annotation type: Widget signature');</span></div><div class="line">  <span class="keyword">this</span>.setFlags(AnnotationFlag.HIDDEN);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>将this.setFlags(AnnotationFlag.HIDDEN);这一行注释掉，就可以显示电子签章。</p>
+        <p>web项目部署一般都少不了nginx做反向代理和负载均衡，最近搞了三台服务器玩了一下，对一些知识点做个总结记录…</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h1><p>我们有时候，用自己的计算机想访问国外的某个网站B,但是访问不了，此时，又一个中间服务器C可以访问国外的网站B，那么，我们可以用自己的电脑访问服务器C，通过C来访问B这个网站。那么这个时候，服务器C称为代理服务器，这种访问方式叫做正向代理。正向代理有一个特点，就是我们明确知道要访问哪个网站。再如，当我们有一个服务器集群，并且服务器集群中的每台服务器的内容一样的时候，同样我们要直接从个人电脑访问到服务器集群中的服务器的时候无法访问，且此时第三方服务器能访问集群，这个时候，我们通过第三方服务器访问服务器集群的内容，但是此时我们并不知道是哪一台服务器提供的内容，此时的代理方式称为反向代理</p>
+<h1 id="什么是负载均衡"><a href="#什么是负载均衡" class="headerlink" title="什么是负载均衡"></a>什么是负载均衡</h1><p>当一台服务器的单位时间内的访问量越大的时候，服务器的压力会越大。当一台服务器压力大得超过自身的承受能力的时候，服务器会崩溃。为了避免服务器崩溃，让用户有更好的体验，我们通常通过负载均衡的方式来分担服务器的压力。我们可以通过建立很多个服务器，这些服务器组成一个服务器集群，然后，当用户访问我们网站的时候，先访问一个中间服务器，再让这个中间服务器在服务器集群中选择一个压力较小的服务器，然后将该访问请求引入该选择的服务器。这样，用户的每次访问，都会保证服务器集群中的每个服务器的压力趋于平衡，分担了服务器压力，避免了服务器崩溃的情况。</p>
+<h1 id="nginx负载均衡的实现"><a href="#nginx负载均衡的实现" class="headerlink" title="nginx负载均衡的实现"></a>nginx负载均衡的实现</h1><p>nginx是一款可以通过反向代理实现负载均衡的服务器，使用nginx服务实现负载均衡的时候，用户的访问首先会访问到nginx服务器，然后nginx服务器再从服务器集群表中选择压力较小的服务器，然后将该访问请求引向该服务器。若服务器集群中的某个服务器崩溃，那么从待选服务器列表中将该服务器删除，也就是说一个服务器假如崩溃了，那么nginx就肯定不会将访问请求引入该服务器了。</p>
+<h1 id="http-upstream模块"><a href="#http-upstream模块" class="headerlink" title="http upstream模块"></a>http upstream模块</h1><p>upstream模块是nginx服务器中的一个重要模块，upstream模块实现在轮询和客户端ip之间实现后端的负载均衡。常用的命令有ip_hash指令，server指令等</p>
+<ul>
+<li>ip_hash<br>在负载均衡系统中，假如用户在某台服务器上登陆，那么如果该用户第二次请求的时候，因为我们是负载均衡系统，每次请求都会重新定位到服务器集群中的一个服务器，那么此时如果将已经登陆服务器A的用户再定位到其他服务器，显然不妥。故而，我们可以采用ip_hash指令解决这个问题，如果客户端请求已经访问了服务器A并登陆，那么第二次请求的时候，会将该请求通过哈希算法自动定位到该后端服务器中。</li>
+<li>server指令<br>这个指令主要用于指定服务器的名称和参数</li>
+<li><p>安装nginx源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y nginx</div></pre></td></tr></table></figure>
+</li>
+<li><p>nginx默认目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">whereis nginx</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz</div></pre></td></tr></table></figure></p>
+<ul>
+<li>nginx默认路径<ul>
+<li>nginx配置路径：/etc/nginx/</li>
+<li>PID目录：/var/run/nginx.pid</li>
+<li>错误日志：/var/log/nginx/error.log</li>
+<li>访问日志：/var/log/nginx/access.log</li>
+<li>默认站点目录：/usr/share/nginx/html<br>事实上，只需知道Nginx配置路径，其他路径均可在/etc/nginx/nginx.conf 以及/etc/nginx/conf.d/default.conf 中查询到。</li>
+</ul>
+</li>
+<li><p>常用命令</p>
+<ul>
+<li><p>启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试nginx配置是否正确</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -t</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -s reload</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="一个简单的nginx配置"><a href="#一个简单的nginx配置" class="headerlink" title="一个简单的nginx配置"></a>一个简单的nginx配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">worker_processes 4;</div><div class="line">events &#123;</div><div class="line">    worker_connections 1024;</div><div class="line">&#125;</div><div class="line">http &#123;</div><div class="line">    upstream firsttest &#123;</div><div class="line">        ip_hash;</div><div class="line">        server 192.168.0.1 weight=2;</div><div class="line">        server 192.168.0.2;</div><div class="line">    &#125;</div><div class="line">    server &#123;</div><div class="line">        listen 8080;</div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://firsttest;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -357,7 +394,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
           
         </div>
       
@@ -370,8 +407,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/动态数据绑定之监听对象变化.html" rel="next" title="动态数据绑定之监听对象变化">
-                <i class="fa fa-chevron-left"></i> 动态数据绑定之监听对象变化
+              <a href="/archives/46d16c8a.html" rel="next" title="模块化的前世今生">
+                <i class="fa fa-chevron-left"></i> 模块化的前世今生
               </a>
             
           </div>
@@ -380,8 +417,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/CentOS-7-搭建ngrok服务器.html" rel="prev" title="CentOS 7 搭建ngrok服务器">
-                CentOS 7 搭建ngrok服务器 <i class="fa fa-chevron-right"></i>
+              <a href="/archives/5a55af92.html" rel="prev" title="vue源码解析">
+                vue源码解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -514,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的demo"><span class="nav-number">2.</span> <span class="nav-text">一个简单的demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是反向代理"><span class="nav-number"></span> <span class="nav-text">什么是反向代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是负载均衡"><span class="nav-number"></span> <span class="nav-text">什么是负载均衡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx负载均衡的实现"><span class="nav-number"></span> <span class="nav-text">nginx负载均衡的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-upstream模块"><span class="nav-number"></span> <span class="nav-text">http upstream模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个简单的nginx配置"><span class="nav-number"></span> <span class="nav-text">一个简单的nginx配置</span></a></div>
             
 
           </div>

@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="node," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -81,21 +81,18 @@
 
 
 
-<meta name="description" content="之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。">
-<meta name="keywords" content="node">
+<meta name="description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nodejs深入学习笔记">
-<meta property="og:url" content="https://blog.dogjun.com/nodejs深入学习笔记.html">
+<meta property="og:title" content="pdf.js使用总结">
+<meta property="og:url" content="https://blog.dogjun.com/archives/a0964e0d.html">
 <meta property="og:site_name" content="DogJun&#39;s Blog">
-<meta property="og:description" content="之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。">
+<meta property="og:description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.06.09.png">
-<meta property="og:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.11.32.png">
-<meta property="og:updated_time" content="2018-08-16T09:04:42.049Z">
+<meta property="og:updated_time" content="2018-08-17T02:32:11.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nodejs深入学习笔记">
-<meta name="twitter:description" content="之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。">
-<meta name="twitter:image" content="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.06.09.png">
+<meta name="twitter:title" content="pdf.js使用总结">
+<meta name="twitter:description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.dogjun.com/nodejs深入学习笔记.html"/>
+  <link rel="canonical" href="https://blog.dogjun.com/archives/a0964e0d.html"/>
 
 
 
 
 
-  <title>nodejs深入学习笔记 | DogJun's Blog</title>
+  <title>pdf.js使用总结 | DogJun's Blog</title>
   
 
 
@@ -176,7 +173,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">DogJun个人技术博客</h1>
+        <h1 class="site-subtitle" itemprop="description">DogJun个人博客</h1>
       
   </div>
 
@@ -248,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/nodejs深入学习笔记.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/archives/a0964e0d.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DogJun">
@@ -265,7 +262,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">nodejs深入学习笔记</h2>
+          <h2 class="post-title" itemprop="name headline">pdf.js使用总结</h2>
         
 
         <div class="post-meta">
@@ -277,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T22:21:14+08:00">
-                2018-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T16:06:40+08:00">
+                2017-09-06
               </time>
             
 
@@ -337,59 +334,12 @@
       
 
       
-        <p>之前对node只是学习了基础的api，知道express和koa框架怎么使用，最近对node进行了较为深入的学习，记录一些比较重要的知识点。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="NodeJS异步IO原理浅析及优化方案"><a href="#NodeJS异步IO原理浅析及优化方案" class="headerlink" title="NodeJS异步IO原理浅析及优化方案"></a>NodeJS异步IO原理浅析及优化方案</h1><ul>
-<li>异步IO的好处<ul>
-<li>前端可以通过异步IO可以消除UI阻塞</li>
-<li>假设请求资源A的时间为M，请求资源B的时间为N，那么同步的请求耗时为M+N，如果采用异步方式占用时间为Max（M，N）</li>
-<li>随着业务的复杂，会引入分布式系统，时间会线性的增加，M+N+…和Max(M,N,…)，这会放大同步和异步之间的差异</li>
-<li>I/O是昂贵的，分布式I/O是更昂贵的</li>
-<li>NodeJS适用于IO密集型不适用CPU密集型</li>
-</ul>
-</li>
-<li><p>node如何实现一个sleep</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>)</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'world!'</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span> (<span class="params">ms</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, ms))</div><div class="line">&#125;</div><div class="line">test()</div></pre></td></tr></table></figure>
-</li>
-<li><p>内存管理与优化</p>
-<ul>
-<li>V8垃圾回收机制<ul>
-<li>Node使用Javascript在服务端操作大内存对象受到了一定的限制，64位系统下约为1.4GB，32位操作系统下是0.7GB</li>
-<li>Process.memoryUsage -&gt; rss 进程常驻内存 heapTotal 已申请的堆内存 heapUsed 已使用的内存 （单位都是字节）</li>
-<li>V8的垃圾回收策略主要基于分代式垃圾回收机制。在自动垃圾回收的演变过程中，人们发现没有一种垃圾回收算法能够胜任所有场景。V8中内存分为新生代和老生代两代。新生代为存活时间较短对象，老生代为存活时间较长的对象</li>
-</ul>
-</li>
-<li>Scavenge算法<ul>
-<li>在分代基础上，新生代的对象主要是通过Scavenge算法进行垃圾回收，再具体实现时主要采用Cheney算法。Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将内存一分为二，每一个空间称为semispace。这两个semispace中一个处于使用，一个处于闲置。处于使用的称之为From，闲置的称之为To，分配对象时先分配到From，当开始进行垃圾回收时，检查From存活对象复制到To。非存活被释放。然后互换位置。再次进行回收，发现被回收过直接晋升，或者发现To空间已经使用了超过25%。它的缺点是只能使用堆内存的一半，这是一个典型的空间换时间的办法，但是新生代声明周期较短，恰恰就适合这个算法。</li>
-<li><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.06.09.png" alt="image"></li>
-</ul>
-</li>
-<li>Mark-Sweep &amp; Mark-compact<ul>
-<li>V8老生代主要采用Mark-Sweep和Mark-compact，在使用Scavenge不合适，一个是对象较多需要复制量太大而且还是没能解决空间问题。Mark-Sweep是标记清除，标记那些死亡的对象，然后清除。但是清除过后出现内存不连续的情况，所以我们要使用Mark-compact,它是基于Mark-Sweep演变而来的，它将活着的对象移到一边，移动完成后，直接清理边界外的内存。当CPU空间不足的时候会非常的高校。V8后续还引入了延迟处理，增量处理，并计划引入并行标记处理。</li>
-<li><img src="http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.11.32.png" alt="image"></li>
-</ul>
-</li>
-<li>常见内存泄露问题<ul>
-<li>无限制增长的数组</li>
-<li>无限制设置属性和值</li>
-<li>任何模块内的私有变量和方法均是永驻的内存的（需要手动 a=null）</li>
-<li>大循环，无GC机会</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PM2<ul>
-<li>pm2是一个带有负载均衡功能的Node应用的进程管理器，可以把你的独立代码利用全部的服务器上的所有cpu，并保证进程永远都是活着，0秒的重载。</li>
-<li>内建负载均衡（使用Node cluster集群模块）</li>
-<li>后台运行</li>
-<li>0秒停机重载</li>
-<li>具有Ubuntu和CentOS的启动脚本</li>
-<li>停止不稳定的进程（避免无限循环）</li>
-<li>控制台检测</li>
-<li>提供HTTP API</li>
-<li>远程控制和实时的接口API（Nodejs模块，允许和PM2进程管理器交互）</li>
-</ul>
-</li>
-</ul>
+        <p>由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="一个简单的demo"><a href="#一个简单的demo" class="headerlink" title="一个简单的demo"></a>一个简单的demo</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    #pdf-container&#123;</span></div><div class="line"><span class="undefined">      width: 1000px;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//mozilla.github.io/pdf.js/build/pdf.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"pdf-container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pdfUrl 为 pdf 文件地址</span></div><div class="line">PDFJS.getDocument(pdfUrl).then(<span class="function"><span class="keyword">function</span>(<span class="params">pdf</span>) </span>&#123;</div><div class="line">  <span class="comment">// 显示所有页数</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> pageNum = <span class="number">1</span>; pageNum &lt;= pdf.numPages; ++pageNum) &#123;</div><div class="line">    pdf.getPage(pageNum).then(<span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</div><div class="line">      <span class="comment">// you can now use *page* here</span></div><div class="line"></div><div class="line">      <span class="keyword">var</span> scale = <span class="number">3</span>;</div><div class="line">      <span class="keyword">var</span> viewport = page.getViewport(<span class="number">1.5</span>);</div><div class="line"></div><div class="line">      <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</div><div class="line">      <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line">      canvas.height = viewport.height;</div><div class="line">      canvas.width = <span class="number">1000</span>;</div><div class="line"></div><div class="line">      <span class="keyword">var</span> renderContext = &#123;</div><div class="line">        canvasContext: context,</div><div class="line">        viewport: viewport</div><div class="line">      &#125;;</div><div class="line">      page.render(renderContext);</div><div class="line"></div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'pdf-container'</span>).appendChild(canvas);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>项目开发过程中发现pdf中的电子签章不显示，控制台警告如下：<br>Warning: Unimplemented widget field type “Sig”, falling back to base field type.</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在pdf.worker.js中有这样一段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 行号： 40277</span></div><div class="line"><span class="comment">// 可自行根据关键字查找到此代码</span></div><div class="line"><span class="comment">// Hide unsupported Widget signatures.</span></div><div class="line"><span class="keyword">if</span> (data.fieldType === <span class="string">'Sig'</span>) &#123;</div><div class="line">  <span class="comment">//WGZ</span></div><div class="line">  <span class="comment">//warn('unimplemented annotation type: Widget signature');</span></div><div class="line">  <span class="keyword">this</span>.setFlags(AnnotationFlag.HIDDEN);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>将this.setFlags(AnnotationFlag.HIDDEN);这一行注释掉，就可以显示电子签章。</p>
 
       
     </div>
@@ -407,7 +357,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/node/" rel="tag"># node</a>
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
           
         </div>
       
@@ -420,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/vue源码解析.html" rel="next" title="vue源码解析">
-                <i class="fa fa-chevron-left"></i> vue源码解析
+              <a href="/archives/851bd19b.html" rel="next" title="动态数据绑定之监听对象变化">
+                <i class="fa fa-chevron-left"></i> 动态数据绑定之监听对象变化
               </a>
             
           </div>
@@ -430,8 +380,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/webpack深入学习.html" rel="prev" title="webpack深入学习">
-                webpack深入学习 <i class="fa fa-chevron-right"></i>
+              <a href="/archives/917084be.html" rel="prev" title="CentOS 7 搭建ngrok服务器">
+                CentOS 7 搭建ngrok服务器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NodeJS异步IO原理浅析及优化方案"><span class="nav-number"></span> <span class="nav-text">NodeJS异步IO原理浅析及优化方案</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的demo"><span class="nav-number">2.</span> <span class="nav-text">一个简单的demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
             
 
           </div>
