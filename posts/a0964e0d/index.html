@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="ngrok," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
-<meta name="keywords" content="ngrok">
+<meta name="description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7 搭建ngrok服务器">
-<meta property="og:url" content="https://blog.dogjun.com/archives/917084be.html">
+<meta property="og:title" content="pdf.js使用总结">
+<meta property="og:url" content="https://blog.dogjun.com/posts/a0964e0d/index.html">
 <meta property="og:site_name" content="DogJun&#39;s Blog">
-<meta property="og:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta property="og:description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-17T02:32:11.418Z">
+<meta property="og:updated_time" content="2018-08-17T07:39:09.568Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7 搭建ngrok服务器">
-<meta name="twitter:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta name="twitter:title" content="pdf.js使用总结">
+<meta name="twitter:description" content="由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.dogjun.com/archives/917084be.html"/>
+  <link rel="canonical" href="https://blog.dogjun.com/posts/a0964e0d/"/>
 
 
 
 
 
-  <title>CentOS 7 搭建ngrok服务器 | DogJun's Blog</title>
+  <title>pdf.js使用总结 | DogJun's Blog</title>
   
 
 
@@ -245,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/archives/917084be.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/posts/a0964e0d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DogJun">
@@ -262,7 +262,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS 7 搭建ngrok服务器</h2>
+          <h2 class="post-title" itemprop="name headline">pdf.js使用总结</h2>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T10:22:57+08:00">
-                2017-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T16:06:40+08:00">
+                2017-09-06
               </time>
             
 
@@ -297,8 +297,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信开发/" itemprop="url" rel="index">
-                    <span itemprop="name">微信开发</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -334,30 +334,12 @@
       
 
       
-        <p>ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><p>需要一台云服务器和一个域名解析到该IP</p>
-<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><p>1、安装 gcc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div></pre></td></tr></table></figure></p>
-<p>2、安装 git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git</div></pre></td></tr></table></figure></p>
-<p>3、安装 go 语言环境</p>
-<p>到网站<a href="https://golang.org/dl/查找最新的版本链接" target="_blank" rel="external">https://golang.org/dl/查找最新的版本链接</a></p>
-<p>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
-<p>解压安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -C /usr/local/ -zxvf go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
-<p>添加环境变量,编辑：vi /etc/profile，在最后添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#go lang</div><div class="line">export GOROOT=/usr/local/go</div><div class="line">export PATH=$PATH:$GOROOT/bin</div></pre></td></tr></table></figure></p>
-<p>使环境变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure></p>
-<p>检查是否安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go version</div></pre></td></tr></table></figure></p>
-<p>输出：go version go1.8 linux/amd64表示安装成功</p>
-<h1 id="在服务器搭建-ngrok-服务"><a href="#在服务器搭建-ngrok-服务" class="headerlink" title="在服务器搭建 ngrok 服务"></a>在服务器搭建 ngrok 服务</h1><p>1、下载 ngrok 源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/src</div><div class="line">git clone https://github.com/inconshreveable/ngrok.git</div></pre></td></tr></table></figure></p>
-<p>2、生成证书<br>在自生成证书时需要一个解析到服务器上的主域名，现在以”dogjun.com”为例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd ngrok</div><div class="line">openssl genrsa -out rootCA.key 2048</div><div class="line">openssl req -x509 -new -nodes -key rootCA.key -subj &quot;/CN=dogjun.com&quot; -days 5000 -out rootCA.pem</div><div class="line">openssl genrsa -out device.key 2048</div><div class="line">openssl req -new -key device.key -subj &quot;/CN=dogjun.com&quot; -out device.csr</div><div class="line">openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</div></pre></td></tr></table></figure></p>
-<p>将新生成的证书，替换掉assets/client/tls下的证书<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yes|cp rootCA.pem assets/client/tls/ngrokroot.crt</div><div class="line">yes|cp device.crt assets/server/tls/snakeoil.crt</div><div class="line">yes|cp device.key assets/server/tls/snakeoil.key</div></pre></td></tr></table></figure></p>
-<p>3、编译生成ngrokd（服务端）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是交叉编译，linux系统GOOS=linux,64位系统GOARCH=amd64，32位系统GOARCH=386</div><div class="line">#当前系统可用go env查看</div><div class="line">GOOS=linux GOARCH=amd64 make release-server</div></pre></td></tr></table></figure></p>
-<p>编译成功后在当前目录的bin目录下可找到ngrokd文件</p>
-<p>启动服务端(/usr/local/src/ngrok目录下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;uboff.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8081&quot; -tunnelAddr=&quot;:4443&quot;</div></pre></td></tr></table></figure></p>
-<p>后台运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup ./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;ngrok.dogjun.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8082&quot; -tunnelAddr=&quot;:4443&quot; &amp;</div></pre></td></tr></table></figure></p>
-<p>出现下面信息，启动成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [registry] [tun] No affinity cache specified</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public http connections on [::]:80</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public https connections on [::]:8081</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for control and proxy connections on [::]:4443</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [metrics] Reporting every 30 seconds</div></pre></td></tr></table></figure></p>
-<p>4、编译生成ngrok（客户端）<br>这里生成windows下的客户端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GOOS=windows GOARCH=amd64 make release-client</div></pre></td></tr></table></figure></p>
-<p>成功会在bin目录下看到windows_amd64文件夹，复制到windows电脑上即可启动<br>在windows_amd64目录下新建一个ngrok.cfg文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server_addr: &quot;ngrok.dogjun.com:4443&quot;</div><div class="line">trust_host_root_certs: false</div></pre></td></tr></table></figure></p>
-<p>然后就可以启动客户端,我已经把windows_amd64文件夹下载到E盘下，打开CMD输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ngrok -subdomain hwj -config=ngrok.cfg 80</div></pre></td></tr></table></figure></p>
-<p>看到下面信息则启动成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Tunnel Status                 online</div><div class="line">Version                       1.7/1.7</div><div class="line">Forwarding                    http://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Forwarding                    https://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Web Interface                 127.0.0.1:4040</div><div class="line"># Conn                        1</div><div class="line">Avg Conn Time                 0.00ms</div></pre></td></tr></table></figure></p>
+        <p>由于项目的开发需要，在线展示PDF，而且要兼容IE，所以就选择了pdf.js,网上教程相对较少，官方文档纯英文，摸索一番，总结一下最基本的使用。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="一个简单的demo"><a href="#一个简单的demo" class="headerlink" title="一个简单的demo"></a>一个简单的demo</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    #pdf-container&#123;</span></div><div class="line"><span class="undefined">      width: 1000px;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//mozilla.github.io/pdf.js/build/pdf.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"pdf-container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pdfUrl 为 pdf 文件地址</span></div><div class="line">PDFJS.getDocument(pdfUrl).then(<span class="function"><span class="keyword">function</span>(<span class="params">pdf</span>) </span>&#123;</div><div class="line">  <span class="comment">// 显示所有页数</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> pageNum = <span class="number">1</span>; pageNum &lt;= pdf.numPages; ++pageNum) &#123;</div><div class="line">    pdf.getPage(pageNum).then(<span class="function"><span class="keyword">function</span>(<span class="params">page</span>) </span>&#123;</div><div class="line">      <span class="comment">// you can now use *page* here</span></div><div class="line"></div><div class="line">      <span class="keyword">var</span> scale = <span class="number">3</span>;</div><div class="line">      <span class="keyword">var</span> viewport = page.getViewport(<span class="number">1.5</span>);</div><div class="line"></div><div class="line">      <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</div><div class="line">      <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line">      canvas.height = viewport.height;</div><div class="line">      canvas.width = <span class="number">1000</span>;</div><div class="line"></div><div class="line">      <span class="keyword">var</span> renderContext = &#123;</div><div class="line">        canvasContext: context,</div><div class="line">        viewport: viewport</div><div class="line">      &#125;;</div><div class="line">      page.render(renderContext);</div><div class="line"></div><div class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'pdf-container'</span>).appendChild(canvas);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>项目开发过程中发现pdf中的电子签章不显示，控制台警告如下：<br>Warning: Unimplemented widget field type “Sig”, falling back to base field type.</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在pdf.worker.js中有这样一段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 行号： 40277</span></div><div class="line"><span class="comment">// 可自行根据关键字查找到此代码</span></div><div class="line"><span class="comment">// Hide unsupported Widget signatures.</span></div><div class="line"><span class="keyword">if</span> (data.fieldType === <span class="string">'Sig'</span>) &#123;</div><div class="line">  <span class="comment">//WGZ</span></div><div class="line">  <span class="comment">//warn('unimplemented annotation type: Widget signature');</span></div><div class="line">  <span class="keyword">this</span>.setFlags(AnnotationFlag.HIDDEN);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>将this.setFlags(AnnotationFlag.HIDDEN);这一行注释掉，就可以显示电子签章。</p>
 
       
     </div>
@@ -375,7 +357,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ngrok/" rel="tag"><i class="fa fa-tag"></i> ngrok</a>
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
           
         </div>
       
@@ -388,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/archives/a0964e0d.html" rel="next" title="pdf.js使用总结">
-                <i class="fa fa-chevron-left"></i> pdf.js使用总结
+              <a href="/posts/851bd19b/" rel="next" title="动态数据绑定之监听对象变化">
+                <i class="fa fa-chevron-left"></i> 动态数据绑定之监听对象变化
               </a>
             
           </div>
@@ -398,8 +380,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/archives/13300c6a.html" rel="prev" title="函数防抖和节流">
-                函数防抖和节流 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/917084be/" rel="prev" title="CentOS 7 搭建ngrok服务器">
+                CentOS 7 搭建ngrok服务器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前提条件"><span class="nav-number"></span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境安装"><span class="nav-number"></span> <span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在服务器搭建-ngrok-服务"><span class="nav-number"></span> <span class="nav-text">在服务器搭建 ngrok 服务</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的demo"><span class="nav-number">2.</span> <span class="nav-text">一个简单的demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
             
 
           </div>

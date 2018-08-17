@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="跨域," />
+  <meta name="keywords" content="ngrok," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="IE8和IE9在实现跨域请求的时候使用XDomainRequest自己实现了一套，所以即使是使用jquery1.9.1版本也无法直接兼容IE8，IE9的跨域请求。">
-<meta name="keywords" content="跨域">
+<meta name="description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta name="keywords" content="ngrok">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IE8和IE9跨域请求数据兼容性解决方案">
-<meta property="og:url" content="https://blog.dogjun.com/archives/eccb2607.html">
+<meta property="og:title" content="CentOS 7 搭建ngrok服务器">
+<meta property="og:url" content="https://blog.dogjun.com/posts/917084be/index.html">
 <meta property="og:site_name" content="DogJun&#39;s Blog">
-<meta property="og:description" content="IE8和IE9在实现跨域请求的时候使用XDomainRequest自己实现了一套，所以即使是使用jquery1.9.1版本也无法直接兼容IE8，IE9的跨域请求。">
+<meta property="og:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-17T02:32:11.418Z">
+<meta property="og:updated_time" content="2018-08-17T07:39:09.568Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IE8和IE9跨域请求数据兼容性解决方案">
-<meta name="twitter:description" content="IE8和IE9在实现跨域请求的时候使用XDomainRequest自己实现了一套，所以即使是使用jquery1.9.1版本也无法直接兼容IE8，IE9的跨域请求。">
+<meta name="twitter:title" content="CentOS 7 搭建ngrok服务器">
+<meta name="twitter:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.dogjun.com/archives/eccb2607.html"/>
+  <link rel="canonical" href="https://blog.dogjun.com/posts/917084be/"/>
 
 
 
 
 
-  <title>IE8和IE9跨域请求数据兼容性解决方案 | DogJun's Blog</title>
+  <title>CentOS 7 搭建ngrok服务器 | DogJun's Blog</title>
   
 
 
@@ -245,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/archives/eccb2607.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.dogjun.com/posts/917084be/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DogJun">
@@ -262,7 +262,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">IE8和IE9跨域请求数据兼容性解决方案</h2>
+          <h2 class="post-title" itemprop="name headline">CentOS 7 搭建ngrok服务器</h2>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T21:49:14+08:00">
-                2017-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T10:22:57+08:00">
+                2017-09-25
               </time>
             
 
@@ -297,8 +297,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/微信开发/" itemprop="url" rel="index">
+                    <span itemprop="name">微信开发</span>
                   </a>
                 </span>
 
@@ -334,19 +334,30 @@
       
 
       
-        <p>IE8和IE9在实现跨域请求的时候使用XDomainRequest自己实现了一套，所以即使是使用jquery1.9.1版本也无法直接兼容IE8，IE9的跨域请求。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>StackOverflow上对此问题的回答说得很清楚</p>
-<p><a href="http://stackoverflow.com/questions/24206782/ajax-call-not-working-in-ie8" target="_blank" rel="external">http://stackoverflow.com/questions/24206782/ajax-call-not-working-in-ie8</a><br><a href="http://stackoverflow.com/questions/3362474/jquery-ajax-fails-in-ie-on-cross-domain-calls#11267937" target="_blank" rel="external">http://stackoverflow.com/questions/3362474/jquery-ajax-fails-in-ie-on-cross-domain-calls#11267937</a></p>
-<p>有两种解决方案</p>
-<h2 id="自己抽象定义一个ajax请求函数"><a href="#自己抽象定义一个ajax请求函数" class="headerlink" title="自己抽象定义一个ajax请求函数"></a>自己抽象定义一个ajax请求函数</h2><p>这个方法在上面第二个链接已经有人做好了，但是我嫌有点麻烦。</p>
-<h2 id="重定义jquery的-ajaxTransport方法"><a href="#重定义jquery的-ajaxTransport方法" class="headerlink" title="重定义jquery的$. ajaxTransport方法"></a>重定义jquery的$. ajaxTransport方法</h2><p>有人已经做好了，详见这里。<a href="https://github.com/MoonScript/jQuery-ajaxTransport-XDomainRequest" target="_blank" rel="external">https://github.com/MoonScript/jQuery-ajaxTransport-XDomainRequest</a><br>不过使用它有几点非常需要注意</p>
-<ul>
-<li>只能是GET或者是POST请求</li>
-<li>POST请求的数据类型必须是text/plain</li>
-<li>只支持HTPP和HTTPS协议</li>
-<li>请求主体和被请求接口协议必须相同，也就是大家要么都是HTTP，要么都是HTTPS</li>
-<li>必须是异步的</li>
-</ul>
+        <p>ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><p>需要一台云服务器和一个域名解析到该IP</p>
+<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><p>1、安装 gcc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div></pre></td></tr></table></figure></p>
+<p>2、安装 git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git</div></pre></td></tr></table></figure></p>
+<p>3、安装 go 语言环境</p>
+<p>到网站<a href="https://golang.org/dl/查找最新的版本链接" target="_blank" rel="external">https://golang.org/dl/查找最新的版本链接</a></p>
+<p>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
+<p>解压安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -C /usr/local/ -zxvf go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
+<p>添加环境变量,编辑：vi /etc/profile，在最后添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#go lang</div><div class="line">export GOROOT=/usr/local/go</div><div class="line">export PATH=$PATH:$GOROOT/bin</div></pre></td></tr></table></figure></p>
+<p>使环境变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure></p>
+<p>检查是否安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go version</div></pre></td></tr></table></figure></p>
+<p>输出：go version go1.8 linux/amd64表示安装成功</p>
+<h1 id="在服务器搭建-ngrok-服务"><a href="#在服务器搭建-ngrok-服务" class="headerlink" title="在服务器搭建 ngrok 服务"></a>在服务器搭建 ngrok 服务</h1><p>1、下载 ngrok 源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/src</div><div class="line">git clone https://github.com/inconshreveable/ngrok.git</div></pre></td></tr></table></figure></p>
+<p>2、生成证书<br>在自生成证书时需要一个解析到服务器上的主域名，现在以”dogjun.com”为例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd ngrok</div><div class="line">openssl genrsa -out rootCA.key 2048</div><div class="line">openssl req -x509 -new -nodes -key rootCA.key -subj &quot;/CN=dogjun.com&quot; -days 5000 -out rootCA.pem</div><div class="line">openssl genrsa -out device.key 2048</div><div class="line">openssl req -new -key device.key -subj &quot;/CN=dogjun.com&quot; -out device.csr</div><div class="line">openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</div></pre></td></tr></table></figure></p>
+<p>将新生成的证书，替换掉assets/client/tls下的证书<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yes|cp rootCA.pem assets/client/tls/ngrokroot.crt</div><div class="line">yes|cp device.crt assets/server/tls/snakeoil.crt</div><div class="line">yes|cp device.key assets/server/tls/snakeoil.key</div></pre></td></tr></table></figure></p>
+<p>3、编译生成ngrokd（服务端）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是交叉编译，linux系统GOOS=linux,64位系统GOARCH=amd64，32位系统GOARCH=386</div><div class="line">#当前系统可用go env查看</div><div class="line">GOOS=linux GOARCH=amd64 make release-server</div></pre></td></tr></table></figure></p>
+<p>编译成功后在当前目录的bin目录下可找到ngrokd文件</p>
+<p>启动服务端(/usr/local/src/ngrok目录下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;uboff.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8081&quot; -tunnelAddr=&quot;:4443&quot;</div></pre></td></tr></table></figure></p>
+<p>后台运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup ./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;ngrok.dogjun.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8082&quot; -tunnelAddr=&quot;:4443&quot; &amp;</div></pre></td></tr></table></figure></p>
+<p>出现下面信息，启动成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [registry] [tun] No affinity cache specified</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public http connections on [::]:80</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public https connections on [::]:8081</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for control and proxy connections on [::]:4443</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [metrics] Reporting every 30 seconds</div></pre></td></tr></table></figure></p>
+<p>4、编译生成ngrok（客户端）<br>这里生成windows下的客户端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GOOS=windows GOARCH=amd64 make release-client</div></pre></td></tr></table></figure></p>
+<p>成功会在bin目录下看到windows_amd64文件夹，复制到windows电脑上即可启动<br>在windows_amd64目录下新建一个ngrok.cfg文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server_addr: &quot;ngrok.dogjun.com:4443&quot;</div><div class="line">trust_host_root_certs: false</div></pre></td></tr></table></figure></p>
+<p>然后就可以启动客户端,我已经把windows_amd64文件夹下载到E盘下，打开CMD输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ngrok -subdomain hwj -config=ngrok.cfg 80</div></pre></td></tr></table></figure></p>
+<p>看到下面信息则启动成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Tunnel Status                 online</div><div class="line">Version                       1.7/1.7</div><div class="line">Forwarding                    http://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Forwarding                    https://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Web Interface                 127.0.0.1:4040</div><div class="line"># Conn                        1</div><div class="line">Avg Conn Time                 0.00ms</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -364,7 +375,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/跨域/" rel="tag"><i class="fa fa-tag"></i> 跨域</a>
+            <a href="/tags/ngrok/" rel="tag"><i class="fa fa-tag"></i> ngrok</a>
           
         </div>
       
@@ -377,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/archives/2d20fc8c.html" rel="next" title="常用url参数操作方法">
-                <i class="fa fa-chevron-left"></i> 常用url参数操作方法
+              <a href="/posts/a0964e0d/" rel="next" title="pdf.js使用总结">
+                <i class="fa fa-chevron-left"></i> pdf.js使用总结
               </a>
             
           </div>
@@ -387,8 +398,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/archives/851bd19b.html" rel="prev" title="动态数据绑定之监听对象变化">
-                动态数据绑定之监听对象变化 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/13300c6a/" rel="prev" title="函数防抖和节流">
+                函数防抖和节流 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -521,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number"></span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自己抽象定义一个ajax请求函数"><span class="nav-number">1.</span> <span class="nav-text">自己抽象定义一个ajax请求函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定义jquery的-ajaxTransport方法"><span class="nav-number">2.</span> <span class="nav-text">重定义jquery的$. ajaxTransport方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前提条件"><span class="nav-number"></span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境安装"><span class="nav-number"></span> <span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在服务器搭建-ngrok-服务"><span class="nav-number"></span> <span class="nav-text">在服务器搭建 ngrok 服务</span></a></div>
             
 
           </div>
