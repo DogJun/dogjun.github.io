@@ -3,11 +3,9 @@
 
 
     
-    
-    
   <url>
     <loc>http://blog.dogjun.com/posts/917084be/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>CentOS 7 搭建ngrok服务器</title>
@@ -27,7 +25,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/eccb2607/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>IE8和IE9跨域请求数据兼容性解决方案</title>
@@ -47,7 +45,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/e211dac9/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>http协议那些事</title>
@@ -67,7 +65,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/dd4c3b4a/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>javascript语言精粹</title>
@@ -87,7 +85,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/bca54bdc/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>nginx反向代理和负载均衡</title>
@@ -107,7 +105,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/9dbe8f47/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>nodejs深入学习笔记</title>
@@ -127,7 +125,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/a0964e0d/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>pdf.js使用总结</title>
@@ -147,7 +145,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/cf28f323/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>sticky footer</title>
@@ -167,7 +165,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/6a6e1cd8/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>vue-cli webpack 配置解析</title>
@@ -189,7 +187,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/5a55af92/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>vue源码解析</title>
@@ -209,7 +207,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/54f4a807/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>webpack深入学习</title>
@@ -229,7 +227,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/d146bed3/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>作用域和作用域链</title>
@@ -249,7 +247,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/1690d21b/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>函数式编程</title>
@@ -269,7 +267,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/13300c6a/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>函数防抖和节流</title>
@@ -288,8 +286,28 @@
 
     
   <url>
+    <loc>http://blog.dogjun.com/posts/851bd19b/</loc>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
+    <data>
+        <display>
+        <title>动态数据绑定之监听对象变化</title>
+        <pubTime>2017-09-05T14:01:54.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.dogjun.com/posts/452fb9c/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>小程序开发经验总结</title>
@@ -309,7 +327,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/2d20fc8c/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>常用url参数操作方法</title>
@@ -329,7 +347,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/46d16c8a/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>模块化的前世今生</title>
@@ -349,7 +367,7 @@
     
   <url>
     <loc>http://blog.dogjun.com/posts/2d90a900/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
+    <lastmod>2019-07-07T13:19:35.116Z</lastmod>
     <data>
         <display>
         <title>输入银行卡号每四位自动添加空格</title>
@@ -367,25 +385,7 @@
     </url>
 
     
-  <url>
-    <loc>http://blog.dogjun.com/posts/851bd19b/</loc>
-    <lastmod>2019-07-07T13:12:56.350Z</lastmod>
-    <data>
-        <display>
-        <title>动态数据绑定之监听对象变化</title>
-        <pubTime>2017-09-05T14:01:54.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://blog.dogjun.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
+    
     
     
     
