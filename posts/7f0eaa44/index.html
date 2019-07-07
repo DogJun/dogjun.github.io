@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="ngrok," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
-<meta name="keywords" content="ngrok">
+<meta name="description" content="前端容错异常处理方式的总结">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7 搭建ngrok服务器">
-<meta property="og:url" content="http://blog.dogjun.com/posts/917084be/index.html">
+<meta property="og:title" content="前端容错">
+<meta property="og:url" content="http://blog.dogjun.com/posts/7f0eaa44/index.html">
 <meta property="og:site_name" content="DogJun&#39;s Blog">
-<meta property="og:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta property="og:description" content="前端容错异常处理方式的总结">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.dogjun.com/error-1.jpg">
 <meta property="og:updated_time" content="2019-07-07T13:32:20.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7 搭建ngrok服务器">
-<meta name="twitter:description" content="ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。">
+<meta name="twitter:title" content="前端容错">
+<meta name="twitter:description" content="前端容错异常处理方式的总结">
+<meta name="twitter:image" content="http://images.dogjun.com/error-1.jpg">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.dogjun.com/posts/917084be/"/>
+  <link rel="canonical" href="http://blog.dogjun.com/posts/7f0eaa44/"/>
 
 
 
 
 
-  <title>CentOS 7 搭建ngrok服务器 | DogJun's Blog</title>
+  <title>前端容错 | DogJun's Blog</title>
   
 
 
@@ -245,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.dogjun.com/posts/917084be/">
+    <link itemprop="mainEntityOfPage" href="http://blog.dogjun.com/posts/7f0eaa44/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DogJun">
@@ -262,7 +264,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS 7 搭建ngrok服务器</h2>
+          <h2 class="post-title" itemprop="name headline">前端容错</h2>
         
 
         <div class="post-meta">
@@ -274,8 +276,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T10:22:57+08:00">
-                2017-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T21:41:54+08:00">
+                2019-05-28
               </time>
             
 
@@ -297,8 +299,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微信开发/" itemprop="url" rel="index">
-                    <span itemprop="name">微信开发</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -334,30 +336,21 @@
       
 
       
-        <p>ngrok官方服务被墙了，花生壳开始收费了，免费版不稳定且有流量限制，项目中涉及到微信开发，只有自己搭建ngrok服务器做内网穿透。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><p>需要一台云服务器和一个域名解析到该IP</p>
-<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><p>1、安装 gcc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div></pre></td></tr></table></figure></p>
-<p>2、安装 git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git</div></pre></td></tr></table></figure></p>
-<p>3、安装 go 语言环境</p>
-<p>到网站<a href="https://golang.org/dl/查找最新的版本链接" target="_blank" rel="external">https://golang.org/dl/查找最新的版本链接</a></p>
-<p>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
-<p>解压安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -C /usr/local/ -zxvf go1.8.linux-amd64.tar.gz</div></pre></td></tr></table></figure></p>
-<p>添加环境变量,编辑：vi /etc/profile，在最后添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#go lang</div><div class="line">export GOROOT=/usr/local/go</div><div class="line">export PATH=$PATH:$GOROOT/bin</div></pre></td></tr></table></figure></p>
-<p>使环境变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div></pre></td></tr></table></figure></p>
-<p>检查是否安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go version</div></pre></td></tr></table></figure></p>
-<p>输出：go version go1.8 linux/amd64表示安装成功</p>
-<h1 id="在服务器搭建-ngrok-服务"><a href="#在服务器搭建-ngrok-服务" class="headerlink" title="在服务器搭建 ngrok 服务"></a>在服务器搭建 ngrok 服务</h1><p>1、下载 ngrok 源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/src</div><div class="line">git clone https://github.com/inconshreveable/ngrok.git</div></pre></td></tr></table></figure></p>
-<p>2、生成证书<br>在自生成证书时需要一个解析到服务器上的主域名，现在以”dogjun.com”为例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd ngrok</div><div class="line">openssl genrsa -out rootCA.key 2048</div><div class="line">openssl req -x509 -new -nodes -key rootCA.key -subj &quot;/CN=dogjun.com&quot; -days 5000 -out rootCA.pem</div><div class="line">openssl genrsa -out device.key 2048</div><div class="line">openssl req -new -key device.key -subj &quot;/CN=dogjun.com&quot; -out device.csr</div><div class="line">openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</div></pre></td></tr></table></figure></p>
-<p>将新生成的证书，替换掉assets/client/tls下的证书<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yes|cp rootCA.pem assets/client/tls/ngrokroot.crt</div><div class="line">yes|cp device.crt assets/server/tls/snakeoil.crt</div><div class="line">yes|cp device.key assets/server/tls/snakeoil.key</div></pre></td></tr></table></figure></p>
-<p>3、编译生成ngrokd（服务端）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是交叉编译，linux系统GOOS=linux,64位系统GOARCH=amd64，32位系统GOARCH=386</div><div class="line">#当前系统可用go env查看</div><div class="line">GOOS=linux GOARCH=amd64 make release-server</div></pre></td></tr></table></figure></p>
-<p>编译成功后在当前目录的bin目录下可找到ngrokd文件</p>
-<p>启动服务端(/usr/local/src/ngrok目录下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;uboff.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8081&quot; -tunnelAddr=&quot;:4443&quot;</div></pre></td></tr></table></figure></p>
-<p>后台运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup ./bin/ngrokd -tlsKey=&quot;assets/server/tls/snakeoil.key&quot; -tlsCrt=&quot;assets/server/tls/snakeoil.crt&quot; -domain=&quot;ngrok.dogjun.com&quot;  -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:8082&quot; -tunnelAddr=&quot;:4443&quot; &amp;</div></pre></td></tr></table></figure></p>
-<p>出现下面信息，启动成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [registry] [tun] No affinity cache specified</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public http connections on [::]:80</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for public https connections on [::]:8081</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.Info:112) Listening for control and proxy connections on [::]:4443</div><div class="line">[14:52:23 CST 2017/03/18] [INFO] (ngrok/log.(*PrefixLogger).Info:83) [metrics] Reporting every 30 seconds</div></pre></td></tr></table></figure></p>
-<p>4、编译生成ngrok（客户端）<br>这里生成windows下的客户端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GOOS=windows GOARCH=amd64 make release-client</div></pre></td></tr></table></figure></p>
-<p>成功会在bin目录下看到windows_amd64文件夹，复制到windows电脑上即可启动<br>在windows_amd64目录下新建一个ngrok.cfg文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server_addr: &quot;ngrok.dogjun.com:4443&quot;</div><div class="line">trust_host_root_certs: false</div></pre></td></tr></table></figure></p>
-<p>然后就可以启动客户端,我已经把windows_amd64文件夹下载到E盘下，打开CMD输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ngrok -subdomain hwj -config=ngrok.cfg 80</div></pre></td></tr></table></figure></p>
-<p>看到下面信息则启动成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Tunnel Status                 online</div><div class="line">Version                       1.7/1.7</div><div class="line">Forwarding                    http://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Forwarding                    https://hwj.ngrok.dogjun.com -&gt; 127.0.0.1:80</div><div class="line">Web Interface                 127.0.0.1:4040</div><div class="line"># Conn                        1</div><div class="line">Avg Conn Time                 0.00ms</div></pre></td></tr></table></figure></p>
+        <p>前端容错异常处理方式的总结</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="切分不同的脚本独立运行"><a href="#切分不同的脚本独立运行" class="headerlink" title="切分不同的脚本独立运行"></a>切分不同的脚本独立运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    xxx</div><div class="line">    console.log(1)</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    console.log(2)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://images.dogjun.com/error-1.jpg" alt=""></p>
+<p>第二个脚本正常运行，不会受第一个脚本影响</p>
+<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h2><ul>
+<li><p>try不能检测到语法错误,语法解析错误是捕获不了的,onerror也不行</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    <span class="keyword">var</span> error = <span class="string">'error'</span>；</div><div class="line">&#125; <span class="keyword">catch</span> (e)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"检测不到中文分号"</span>)</div><div class="line">    <span class="built_in">console</span>.log(e)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>try检测不到异步中的错误</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">        error</div><div class="line">    &#125;)</div><div class="line">&#125; <span class="keyword">catch</span>(e)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"检测不到setTimeout中的错误"</span>)</div><div class="line">    <span class="built_in">console</span>.log(e)    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h2><p>onerror用来捕捉预料之外的错误，而try-catch用来在可预见情况下监控特定的错误，两者组合使用更加高效<br>window.onerror只有在函数返回true的时候，异常才不会向上抛出，否则即使知道异常的发生控制台还是会显示错误<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">message, source, lineno, colno, error</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"检测到setTimeout里的错误"</span>)</div><div class="line">    <span class="built_in">console</span>.log(&#123;</div><div class="line">      message,</div><div class="line">      source,</div><div class="line">      lineno,</div><div class="line">      colno,</div><div class="line">      error</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    error</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="监听error"><a href="#监听error" class="headerlink" title="监听error"></a>监听error</h2><p>由于网络请求异常不会事件冒泡,因此必须在捕获阶段将其捕捉到,这种方式虽然可以捕捉到网络请求的异常，但是无法判断http的状态（404，500等等），所以还需要配合服务端日志进行排查分析<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./404.jpg"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="built_in">document</span>.addEventListener(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message, source, lineno, colno, error</span>) </span>&#123;</span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log(&#123;</span></div><div class="line"><span class="undefined">          message,</span></div><div class="line"><span class="undefined">          source,</span></div><div class="line"><span class="undefined">          lineno,</span></div><div class="line"><span class="undefined">          colno,</span></div><div class="line"><span class="undefined">          error</span></div><div class="line"><span class="undefined">        &#125;)</span></div><div class="line"><span class="javascript">        <span class="keyword">return</span> <span class="literal">true</span>;</span></div><div class="line"><span class="javascript">    &#125;, <span class="literal">true</span>)</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="unhandledrejection-处理-Promise-的异常"><a href="#unhandledrejection-处理-Promise-的异常" class="headerlink" title="unhandledrejection 处理 Promise 的异常"></a>unhandledrejection 处理 Promise 的异常</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"unhandledrejection"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    e.preventDefault()</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"全局捕获promise error"</span>)</div><div class="line">    <span class="built_in">console</span>.log(e.reason)</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;)</div><div class="line"><span class="built_in">Promise</span>.reject(<span class="string">"promise error"</span>)</div><div class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</div><div class="line">    reject(<span class="string">'promise error'</span>)</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolvet</span>)=&gt;</span>&#123;</div><div class="line">    resolve()</div><div class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="keyword">throw</span> <span class="string">'promise error'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -375,7 +368,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ngrok/" rel="tag"><i class="fa fa-tag"></i> ngrok</a>
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
           
         </div>
       
@@ -388,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/a0964e0d/" rel="next" title="pdf.js使用总结">
-                <i class="fa fa-chevron-left"></i> pdf.js使用总结
+              <a href="/posts/452fb9c/" rel="next" title="小程序开发经验总结">
+                <i class="fa fa-chevron-left"></i> 小程序开发经验总结
               </a>
             
           </div>
@@ -397,10 +390,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/13300c6a/" rel="prev" title="函数防抖和节流">
-                函数防抖和节流 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前提条件"><span class="nav-number"></span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境安装"><span class="nav-number"></span> <span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在服务器搭建-ngrok-服务"><span class="nav-number"></span> <span class="nav-text">在服务器搭建 ngrok 服务</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切分不同的脚本独立运行"><span class="nav-number">2.</span> <span class="nav-text">切分不同的脚本独立运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#try-catch"><span class="nav-number">3.</span> <span class="nav-text">try catch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-onerror"><span class="nav-number">4.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听error"><span class="nav-number">5.</span> <span class="nav-text">监听error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unhandledrejection-处理-Promise-的异常"><span class="nav-number">6.</span> <span class="nav-text">unhandledrejection 处理 Promise 的异常</span></a></li></ol></div>
             
 
           </div>
