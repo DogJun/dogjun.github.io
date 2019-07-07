@@ -19,7 +19,7 @@ categories: 前端
 - HTTP是超文本传输协议，从www浏览器传输到本地浏览器的 一种传输协议，网站是基于HTTP协议的，例如网站的图片、 CSS、JS等都是基于HTTP协议进行传输的
 - HTTP协议是由从客户机到服务器的请求(Request)和从服务器 到客户机的响应(response)进行约束和规范
 # 在TCP/IP协议栈中的位置
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.33.55.png)
 - 目前应用版本HTTP 1.1
 - HTTP默认端口号为80
 - HTTPS默认端口号为443
@@ -29,9 +29,9 @@ categories: 前端
 - 请求行组成:以一个方法符号开头，后面跟着请求的URI和协 议的版本
 - 状态行组成:服务器HTTP协议的版本，服务器发回的响应状态代码和状态代码的文本描述
 # 请求报文
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.35.52.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.35.52.png)
 # 响应报文
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.51.44.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.51.44.png)
 # 请求方法
 - GET: 请求获取Request-URI所标识的资源
 - POST: 在Request-URI所标识的资源后附加新的数据
@@ -72,9 +72,9 @@ categories: 前端
 - Session则保存服务器段，通过唯一的值sessionID来区别每一个用户。SessionID随每个连接请求发送到服务器，服务器根据sessionID来识别客户端，再通过session 的key获取session值
 # 浏览器缓存机制
 - 浏览器缓存机制 - 浏览器第一次请求
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.42.52.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.42.52.png)
 - 浏览器缓存机制 - 浏览器再次请求
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.43.36.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-08%20%E4%B8%8B%E5%8D%883.43.36.png)
 #  Etag/If-None-Match策略
 - Etag: web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识(生成规则由服务器决定)
 - If-None-Match:当资源过期时(使用Cache-Control标识的max-age)，发现源具有Etage声明，则再次向web服务器请求时带 上头If-None-Match(Etag的值)。web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决 定返回200或304

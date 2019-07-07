@@ -9,7 +9,7 @@ categories: 前端
 ------
 
 # vue架构概览
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-01%20%E4%B8%8B%E5%8D%8810.39.47.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-01%20%E4%B8%8B%E5%8D%8810.39.47.png)
 - /complier目录是编译模板
 - /core目录是Vue.js的核心
 - /entries目录是生产打包的入口
@@ -18,7 +18,7 @@ categories: 前端
 - /sfc目录是处理单文件.vue
 - /shared目录提供全局用到的工具函数
 
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-01%20%E4%B8%8B%E5%8D%8810.50.32.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-01%20%E4%B8%8B%E5%8D%8810.50.32.png)
 - compents 模板编译的代码
 - global-api 最上层的文件接口
 - instance 生命周期
@@ -27,7 +27,7 @@ categories: 前端
 - vdom 虚拟dom
 
 结论: Vue.js 的组成是由 core + 对应的 ‘平台’ 补充代码构成(独立构建和运行时构建 只是 platforms 下 web 平台的两种选择)。
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-01%20%E4%B8%8B%E5%8D%8810.49.57.png)
+![image](http://images.dogjun.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-01%20%E4%B8%8B%E5%8D%8810.49.57.png)
 
 # 双向数据绑定
 ## 双向绑定（响应式）所涉及到的技术
@@ -192,7 +192,7 @@ notify () {
 ```
 
 ### Directive
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402153924.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402153924.png)
 关于编译这块vue分了两种类型，一种是文本节点，一种是元素节点.  
 vue内置了这么多的指令，这些指令都会抛出两个接口bind 和 update，这两个接口的作用是，编译的最后一步是执行所有用到的指令的bind方法，而update 方法则是当watcher 触发 update 时，Directive会触发指令的update方法
 observe -> 触发setter ->watcher -> 触发update ->Directive -> 触发update ->指令
@@ -230,12 +230,12 @@ this._directives.push(new Directive(descriptor, this, node, host, scope, frag))
 入Dep依赖中
 
 ### 总结
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402153929.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402153929.png)
 
 # Virtual dom
 DOM操作很慢是两个原因，一个是本身操作就不快，第二是我们（还有很多框架）处理dom的方式很慢，Virtual Dom解决了我们这些愚蠢的程序员对Dom的低劣操作，它让我们不需要进行Dom操作，而是将希望展现的最终结果告诉Vue，Vue通过一个简化的Dom即Virtual dom进行render，当你试图改变显示内容时，新生成的Virtual Dom会与现在的Virtual
 dom对比，通过diff算法找到区别，这些操作都是在快速的js中完成的，最后对实际Dom进行最小的Dom操作来完成效果，这就是Virtual Dom的概念。
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402162223.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402162223.png)
 这仅仅是第一层。真正的 DOM元素非常庞大，这是因为标准就是这么设计的。而且操作它们的时候你要小心翼翼，轻微的触碰可能就会导致页面重排，这就是杀死性能的罪魁祸首。  
 ‘Virtual-dom’是一系列的模块集合，用来提供声明式的DOM渲染。来看一个简单的 DOM 片段.
 本质上就是在 JS 和 DOM 之间做了一个缓存。可以类比 CPU 和硬盘，既然硬盘这么慢，我
@@ -265,9 +265,9 @@ const dom = {
 
 # Dom diff
 比较两棵DOM树的差异是 Virtual DOM算法最核心的部分，这也是所谓的 Virtual DOM 的 diff 算法。两个树的完全的 diff 算法是一个时间复杂度为 O(n^3)的问题。但是在前端当中，你很少会跨越层级地移动DOM元素。所以 Virtual DOM 只会对同一个层级的元素进行对比。下面的div只会和同一层级的div对比，第二层级的只会跟第二层级对比。这样算法复杂度就可以达到 O(n)。
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402164259.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402164259.png)
 实际的代码中，会对新旧两棵树进行一个深度优先的遍历，这样每个节点都会有一个唯一的标记，在深度优先遍历的时候，每遍历到一个节点就把该节点和新的的树进行对比。如果有差异的话就记录到一个对象里面。p是patches[1]，ul是patches[3]，类推。
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402164303.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402164303.png)
 
 节点的差异指的是什么呢？对 DOM 操作可能会：
 - 替换掉原来的节点
@@ -299,11 +299,11 @@ const dom = {
 
 # vue运行时优化
 - 对于不变的内容，标记出来，不做dom diff
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171141.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171141.png)
 - 对于不变的数据，直接生成，不做dom diff
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171147.png)
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171153.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171147.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171153.png)
 - SSR采用直出字符串拼接的方式，根本不需要dom-diff
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171157.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171157.png)
 - ssr异步加载脚本
-![image](http://p1cbbowoo.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171637.png)
+![image](http://images.dogjun.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180402171637.png)
