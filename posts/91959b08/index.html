@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="EFnXdGKmNG" />
+<meta name="google-site-verification" content="Wpbr6qPEk2GfwHfa-IBoccol_8AxstnUbn3JBUWhacg" />
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近在学习vue.js技术揭秘电子书, 做了一些笔记，对vue的理解又更深了一个层次">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue.js技术揭秘学习笔记">
+<meta property="og:url" content="http://blog.dogjun.com/posts/91959b08/index.html">
+<meta property="og:site_name" content="DogJun&#39;s Blog">
+<meta property="og:description" content="最近在学习vue.js技术揭秘电子书, 做了一些笔记，对vue的理解又更深了一个层次">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.dogjun.com/new-vue.png">
+<meta property="og:image" content="http://images.dogjun.com/lifecycle.png">
+<meta property="og:image" content="http://images.dogjun.com/reactive.png">
+<meta property="og:updated_time" content="2019-07-07T13:47:53.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue.js技术揭秘学习笔记">
+<meta name="twitter:description" content="最近在学习vue.js技术揭秘电子书, 做了一些笔记，对vue的理解又更深了一个层次">
+<meta name="twitter:image" content="http://images.dogjun.com/new-vue.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.dogjun.com/posts/91959b08/"/>
+
+
+
+
+
+  <title>vue.js技术揭秘学习笔记 | DogJun's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?35b8f63164bc69129a262db4ce33dcd2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DogJun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">DogJun个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.dogjun.com/posts/91959b08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DogJun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DogJun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">vue.js技术揭秘学习笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T21:41:54+08:00">
+                2019-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在学习vue.js技术揭秘电子书, 做了一些笔记，对vue的理解又更深了一个层次</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="类型检查flow"><a href="#类型检查flow" class="headerlink" title="类型检查flow"></a>类型检查flow</h2><p>类型检查是当前动态类型语言的发展趋势，在编译期间尽早发现（由错误类型）引起的bug，又不影响代码运行（不需要运行时动态检查类型），使得javascript具有和编写java等强类型语言具有相近的体验<br>通常类型检查有两种方式：</p>
+<ul>
+<li>类型推断：通过变量的使用上下文来推断出变量类型，然后根据这些推断来检查类型</li>
+<li>类型注释：事先注释好期待的类型，基于这些类型推断<h2 id="源码目录设计"><a href="#源码目录设计" class="headerlink" title="源码目录设计"></a>源码目录设计</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">├── compiler        # 编译相关 </div><div class="line">├── core            # 核心代码 </div><div class="line">├── platforms       # 不同平台的支持</div><div class="line">├── server          # 服务端渲染</div><div class="line">├── sfc             # .vue 文件解析</div><div class="line">├── shared          # 共享代码</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Runtime-Only-VS-Runtime-Compiler"><a href="#Runtime-Only-VS-Runtime-Compiler" class="headerlink" title="Runtime Only VS Runtime + Compiler"></a>Runtime Only VS Runtime + Compiler</h2><ul>
+<li>Runtime Only<br>使用Runtime Only版本的vue.js，需要借助webpack的vue-loader等工具将.vue<br>文件编译成javascript，因为是在编译阶段做的，只包含运行时的vue.js,所以体积也会比较轻量</li>
+<li>Runtime + Complier<br>如果没有对代码进行预编译，又使用了Vue的template属性传入了一段字符串，则需要在客户端编译模板<h2 id="Vue的定义"><a href="#Vue的定义" class="headerlink" title="Vue的定义"></a>Vue的定义</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/core/instance/index.js</span></div><div class="line"><span class="keyword">import</span> &#123; initMixin &#125; <span class="keyword">from</span> <span class="string">'./init'</span></div><div class="line"><span class="keyword">import</span> &#123; stateMixin &#125; <span class="keyword">from</span> <span class="string">'./state'</span></div><div class="line"><span class="keyword">import</span> &#123; renderMixin &#125; <span class="keyword">from</span> <span class="string">'./render'</span></div><div class="line"><span class="keyword">import</span> &#123; eventsMixin &#125; <span class="keyword">from</span> <span class="string">'./events'</span></div><div class="line"><span class="keyword">import</span> &#123; lifecycleMixin &#125; <span class="keyword">from</span> <span class="string">'./lifecycle'</span></div><div class="line"><span class="keyword">import</span> &#123; warn &#125; <span class="keyword">from</span> <span class="string">'../util/index'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vue</span> (<span class="params">options</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp;</div><div class="line">    !(<span class="keyword">this</span> <span class="keyword">instanceof</span> Vue)</div><div class="line">  ) &#123;</div><div class="line">    warn(<span class="string">'Vue is a constructor and should be called with the `new` keyword'</span>)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>._init(options)</div><div class="line">&#125;</div><div class="line"></div><div class="line">initMixin(Vue)</div><div class="line">stateMixin(Vue)</div><div class="line">eventsMixin(Vue)</div><div class="line">lifecycleMixin(Vue)</div><div class="line">renderMixin(Vue)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Vue</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>它实际上是一个Function实现的类，只能通过new Vue去实例化。为何不用es6的class去实现类呢？上面代码看到很多xxxMixin函数的调用，并把Vue作为参数传入，功能是在Vue.prototype上扩展一些方法<br>，Vue按功能把这些扩展分散到多个模块去实现，这种方式用class难以实现，这样做的好处是方便代码的维护和管理。</p>
+<h2 id="initGlobalAPI"><a href="#initGlobalAPI" class="headerlink" title="initGlobalAPI"></a>initGlobalAPI</h2><p>Vue在整个初始化过程，除了给它的原型prototype上扩展方法外，还会给Vue这个对象本身扩展全局静态方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// scr/core/global-api/index.js</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">initGlobalAPI</span> (<span class="params">Vue: GlobalAPI</span>) </span>&#123;</div><div class="line">  <span class="comment">// config</span></div><div class="line">  <span class="keyword">const</span> configDef = &#123;&#125;</div><div class="line">  configDef.get = <span class="function"><span class="params">()</span> =&gt;</span> config</div><div class="line">  <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</div><div class="line">    configDef.set = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      warn(</div><div class="line">        <span class="string">'Do not replace the Vue.config object, set individual fields instead.'</span></div><div class="line">      )</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">Object</span>.defineProperty(Vue, <span class="string">'config'</span>, configDef)</div><div class="line"></div><div class="line">  <span class="comment">// exposed util methods.</span></div><div class="line">  <span class="comment">// <span class="doctag">NOTE:</span> these are not considered part of the public API - avoid relying on</span></div><div class="line">  <span class="comment">// them unless you are aware of the risk.</span></div><div class="line">  Vue.util = &#123;</div><div class="line">    warn,</div><div class="line">    extend,</div><div class="line">    mergeOptions,</div><div class="line">    defineReactive</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Vue.set = set</div><div class="line">  Vue.delete = del</div><div class="line">  Vue.nextTick = nextTick</div><div class="line"></div><div class="line">  Vue.options = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</div><div class="line">  ASSET_TYPES.forEach(<span class="function"><span class="params">type</span> =&gt;</span> &#123;</div><div class="line">    Vue.options[type + <span class="string">'s'</span>] = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</div><div class="line">  &#125;)</div><div class="line"></div><div class="line">  <span class="comment">// this is used to identify the "base" constructor to extend all plain-object</span></div><div class="line">  <span class="comment">// components with in Weex's multi-instance scenarios.</span></div><div class="line">  Vue.options._base = Vue</div><div class="line"></div><div class="line">  extend(Vue.options.components, builtInComponents)</div><div class="line"></div><div class="line">  initUse(Vue)</div><div class="line">  initMixin(Vue)</div><div class="line">  initExtend(Vue)</div><div class="line">  initAssetRegisters(Vue)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h1><p>Vue的一个核心思想就是数据驱动，所谓数据驱动，是指视图是由数据驱动生成的，我们对视图的修改，不会直接操作dom，而是通过修改数据。</p>
+<h2 id="new-Vue发生了什么"><a href="#new-Vue发生了什么" class="headerlink" title="new Vue发生了什么"></a>new Vue发生了什么</h2><p>Vue的初始化主要做了几件事情，合并配置，初始化生命周期，初始化事件中心，初始化渲染，初始化data，prop，computed，watcher等</p>
+<h2 id="Vue实例挂载的实现"><a href="#Vue实例挂载的实现" class="headerlink" title="Vue实例挂载的实现"></a>Vue实例挂载的实现</h2><p>Vue中是通过$mount实例方法去挂载vm的，$mount的实现是跟平台，构建方式都相关的，以下是complier版本的$mount<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mount = Vue.prototype.$mount</div><div class="line">Vue.prototype.$mount = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></div><div class="line"><span class="function"><span class="params">  el?: string | Element,</span></span></div><div class="line"><span class="function"><span class="params">  hydrating?: boolean</span></span></div><div class="line"><span class="function"><span class="params"></span>): <span class="title">Component</span> </span>&#123;</div><div class="line">  el = el &amp;&amp; query(el)</div><div class="line"></div><div class="line">  <span class="comment">/* istanbul ignore if */</span></div><div class="line">  <span class="keyword">if</span> (el === <span class="built_in">document</span>.body || el === <span class="built_in">document</span>.documentElement) &#123;</div><div class="line">    process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; warn(</div><div class="line">      <span class="string">`Do not mount Vue to &lt;html&gt; or &lt;body&gt; - mount to normal elements instead.`</span></div><div class="line">    )</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> options = <span class="keyword">this</span>.$options</div><div class="line">  <span class="comment">// resolve template/el and convert to render function</span></div><div class="line">  <span class="keyword">if</span> (!options.render) &#123;</div><div class="line">    <span class="keyword">let</span> template = options.template</div><div class="line">    <span class="keyword">if</span> (template) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> template === <span class="string">'string'</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (template.charAt(<span class="number">0</span>) === <span class="string">'#'</span>) &#123;</div><div class="line">          template = idToTemplate(template)</div><div class="line">          <span class="comment">/* istanbul ignore if */</span></div><div class="line">          <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; !template) &#123;</div><div class="line">            warn(</div><div class="line">              <span class="string">`Template element not found or is empty: <span class="subst">$&#123;options.template&#125;</span>`</span>,</div><div class="line">              <span class="keyword">this</span></div><div class="line">            )</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (template.nodeType) &#123;</div><div class="line">        template = template.innerHTML</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</div><div class="line">          warn(<span class="string">'invalid template option:'</span> + template, <span class="keyword">this</span>)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el) &#123;</div><div class="line">      template = getOuterHTML(el)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (template) &#123;</div><div class="line">      <span class="comment">/* istanbul ignore if */</span></div><div class="line">      <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; config.performance &amp;&amp; mark) &#123;</div><div class="line">        mark(<span class="string">'compile'</span>)</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">const</span> &#123; render, staticRenderFns &#125; = compileToFunctions(template, &#123;</div><div class="line">        shouldDecodeNewlines,</div><div class="line">        shouldDecodeNewlinesForHref,</div><div class="line">        delimiters: options.delimiters,</div><div class="line">        comments: options.comments</div><div class="line">      &#125;, <span class="keyword">this</span>)</div><div class="line">      options.render = render</div><div class="line">      options.staticRenderFns = staticRenderFns</div><div class="line"></div><div class="line">      <span class="comment">/* istanbul ignore if */</span></div><div class="line">      <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; config.performance &amp;&amp; mark) &#123;</div><div class="line">        mark(<span class="string">'compile end'</span>)</div><div class="line">        measure(<span class="string">`vue <span class="subst">$&#123;<span class="keyword">this</span>._name&#125;</span> compile`</span>, <span class="string">'compile'</span>, <span class="string">'compile end'</span>)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> mount.call(<span class="keyword">this</span>, el, hydrating)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在vue2.0中，所有组件的渲染，最终都是需要render方法，无论是单文件.vue<br>方式开发组件，还是写了el或template属性，最终都会转化为render方法。这个过程是一个“在线编译”的过程，调用compileToFunctions方法实现，最后调用原先原型上的$mount方法挂载。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// public mount method</span></div><div class="line">Vue.prototype.$mount = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></div><div class="line"><span class="function"><span class="params">  el?: string | Element,</span></span></div><div class="line"><span class="function"><span class="params">  hydrating?: boolean</span></span></div><div class="line"><span class="function"><span class="params"></span>): <span class="title">Component</span> </span>&#123;</div><div class="line">  el = el &amp;&amp; inBrowser ? query(el) : <span class="literal">undefined</span></div><div class="line">  <span class="keyword">return</span> mountComponent(<span class="keyword">this</span>, el, hydrating)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><p>Vue的_render方法是实例的一个私有方法，它用来把一个实例渲染成虚拟Node，render 函数的第一个参数是 createElement<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>相当于编写了如下render函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">render: function (createElement) &#123;</div><div class="line">  return createElement(&apos;div&apos;, &#123;</div><div class="line">     attrs: &#123;</div><div class="line">        id: &apos;app&apos;</div><div class="line">      &#125;,</div><div class="line">  &#125;, this.message)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Virtual-DOM"><a href="#Virtual-DOM" class="headerlink" title="Virtual DOM"></a>Virtual DOM</h2><p>virtual dom就是用一个原生的js对象去描述dom节点，比创建一个dom的代价要小很多。Vue.js 中 Virtual DOM 是借鉴了一个开源库 snabbdom 的实现，然后加入了一些 Vue.js 特色的东西。virtual dom除了它数据结构的定义，映射到真实dom实际要经历vnode的create，diff，patch过程。</p>
+<h2 id="createElement"><a href="#createElement" class="headerlink" title="createElement"></a>createElement</h2><p>createElement函数主要是通过对children进行扁平化处理之后，通过对标签（tag）的判断，使用VNode类来生成vnode，并将其返回</p>
+<h2 id="update"><a href="#update" class="headerlink" title="update"></a>update</h2><p>Vue的_update方法是实例的一个私有方法，调用时机有两个，一是首次渲染的时候，二是数据更新的时候。它的作用是把vnode渲染成真实的dom。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>初始化vue到最终渲染的整个过程<br><img src="http://images.dogjun.com/new-vue.png" alt=""></p>
+<h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><h2 id="createComponent"><a href="#createComponent" class="headerlink" title="createComponent"></a>createComponent</h2><p>createComponent有3个关键步骤：构造子类构造函数，安装组件钩子函数和实例化vnode</p>
+<h2 id="组件vnode-patch"><a href="#组件vnode-patch" class="headerlink" title="组件vnode patch"></a>组件vnode patch</h2><ul>
+<li>patch的整体流程：createComponent -&gt; 子组件初始化 -&gt; 子组件render -&gt; 子组件patch</li>
+<li>activeInstance为当前激活的vm实例，vm.$vnode为组件的占位vnode，vm._vnode为组件的渲染vnode</li>
+<li>嵌套组件的插入顺序是先子后父<h2 id="合并配置"><a href="#合并配置" class="headerlink" title="合并配置"></a>合并配置</h2>new Vue的过程有两种场景，一是外部我们的代码主动调用new Vue(options)实例化一个vue对象，二是内部通过new Vue(options)实例化组件。这两种场景都会执行_init(options)的方法，它首先会执行一个merge options的逻辑<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><img src="http://images.dogjun.com/lifecycle.png" alt=""></li>
+<li>beforeCreate &amp; created<br>beforeCreate和created是在实例化Vue阶段，在_init方法中执行的。<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Vue.prototype._init = <span class="function"><span class="keyword">function</span> (<span class="params">options?: Object</span>) </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  initLifecycle(vm)</div><div class="line">  initEvents(vm)</div><div class="line">  initRender(vm)</div><div class="line">  callHook(vm, <span class="string">'beforeCreate'</span>)</div><div class="line">  initInjections(vm) <span class="comment">// resolve injections before data/props</span></div><div class="line">  initState(vm)</div><div class="line">  initProvide(vm) <span class="comment">// resolve provide after data/props</span></div><div class="line">  callHook(vm, <span class="string">'created'</span>)</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>beforeCreate和created的调用是在initState的前后，因此不能获取props，data中的值，也不能调用methods中定义的函数，dom还没渲染，也不能访问dom。</p>
+<ul>
+<li>beforeMount &amp; mounted</li>
+</ul>
+<h1 id="深入响应式原理"><a href="#深入响应式原理" class="headerlink" title="深入响应式原理"></a>深入响应式原理</h1><h2 id="响应式对象"><a href="#响应式对象" class="headerlink" title="响应式对象"></a>响应式对象</h2><ul>
+<li>响应式对象的核心是利用了Object.defineProperty给对象的属性添加getter和setter</li>
+<li>Vue会被props,data等变成响应式对象，在创建过程中，发现子属性也为对象则递归把该对象也变成响应式的<h2 id="依赖收集"><a href="#依赖收集" class="headerlink" title="依赖收集"></a>依赖收集</h2></li>
+<li>依赖收集就是订阅数据变化的watcher的收集</li>
+<li>依赖收集的目的是为了当这些响应式数据发送变化，触发他们的setter的时候，能知道应该通知哪些订阅者去做相应的逻辑处理<h2 id="派发更新"><a href="#派发更新" class="headerlink" title="派发更新"></a>派发更新</h2></li>
+<li>派发更新就是当数据发送变化之后，通知所有订阅了这些数据的watcher执行update</li>
+<li>派发更新的过程会把所有要执行update方法的watcher推入到队列中，在nextTick后执行flush<h2 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h2></li>
+<li>nextTick是把要执行的任务推到一个队列中，在下一个tick中同步执行</li>
+<li>数据改变后触发渲染watcher的update，但是watchers的flush是在nextTick后，所以重新渲染是异步的<h2 id="检测变化的注意事项"><a href="#检测变化的注意事项" class="headerlink" title="检测变化的注意事项"></a>检测变化的注意事项</h2></li>
+<li>响应式数据中对于对象的新增删除属性以及数组的下标访问修改和添加数据等的变化是观测不到</li>
+<li>通过Vue.set以及数组的API可以解决这些问题，本质上它们内部都是手动去做了依赖更新的派发<h2 id="计算属性vs侦听属性"><a href="#计算属性vs侦听属性" class="headerlink" title="计算属性vs侦听属性"></a>计算属性vs侦听属性</h2></li>
+<li>计算属性的本质是computed watcher</li>
+<li>侦听属性的本质是user watcher，它还支持deep，sync，immediate等配置</li>
+<li>计算属性适用于模版渲染中，某个值是依赖了其他响应式对象甚至是计算属性计算而来的。而侦听属性适用于观测某个值的变化去完成一段比较复杂的业务逻辑<h2 id="组件更新"><a href="#组件更新" class="headerlink" title="组件更新"></a>组件更新</h2></li>
+<li>组件更新的过程核心就是新旧vnode diff，对新旧节点相同和不同的情况分别做不同的处理</li>
+<li>新旧节点不同的更新流程就是创建新节点-&gt;更新父占位符节点-&gt;删除旧节点</li>
+<li>新旧节点相同的更新流程就是去获取它们的children，根据不同的情况做不同的更新逻辑<h2 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h2><img src="http://images.dogjun.com/reactive.png" alt=""><h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1></li>
+<li>vue.js在不同平台下都会有编译过程，因此编译过程中依赖的配置baseOptions会有所不同</li>
+<li>vue.js利用了函数柯理化的技巧很好的实现了baseOptions参数的保留，同样，vuejs也是利用了函数柯理化技巧把baseCompiler函数抽离出来，把真正编译的过程和其他逻辑如对编译配置处理，缓存处理剥离开<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="event"><a href="#event" class="headerlink" title="event"></a>event</h2></li>
+<li>event在编译阶段生成相关的data，对于dom事件在patch过程中的创建阶段和更新阶段执行updateDomListeners生成dom事件。对于自定义事件，会在组件初始化的过程中，通过initEvents创建</li>
+<li>原生dom事件和自定义事件的主要区别在于添加事件和删除事件的方式不同，并且自定义事件的事件派发是往当前实例上派发的，但是可以利用在父组件环境定义回调函数来实现父子组件通讯<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2></li>
+<li>v-model本质是个语法糖，但也在运行时做了一些优化</li>
+<li>v-model既可以支持原生表单元素，也可以支持组件。在组件的实现中，我们是可以配置子组件接收的prop名称，以及派发的事件名称<h2 id="slot"><a href="#slot" class="headerlink" title="slot"></a>slot</h2></li>
+<li>普通插槽：在父组件编译和渲染阶段生成vnode，所以数据的作用域是父组件实例，子组件渲染的时候时候直接拿到这些渲染好的vnodes</li>
+<li>作用域插槽：父组件在编译和渲染阶段并不会直接生成vnodes，而是在父节点vnode的data中保留一个scopedSlots对象，存储着不同名称的插槽以及他们对应的渲染函数，只有在子组件渲染阶段才会执行这个渲染函数生成vnodes<h2 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h2></li>
+<li>keep-alive是一个内置抽象组件，他的实现的是通过自定义render函数并利用了插槽</li>
+<li>kep-alive组件的渲染分为首次渲染和缓存渲染，当命中缓存的时候，不再执行created和mounted钩子函数，而会执行activated钩子函数，销毁时也不会执行destoryed钩子函数，而是执行deactivated钩子函数<h2 id="transition-group"><a href="#transition-group" class="headerlink" title="transition-group"></a>transition-group</h2></li>
+<li>transition-group是为了做列表的过渡，他会渲染成真是的元素</li>
+<li>当我们去修改列表的数据的时候，如果是添加或者删除数据，则会触发相应原色本身的过渡动画，这点和<transiton>组件实现效果一样。除此之外，还实现了move的过渡效果，让我们的列表过渡效果更加丰富<h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1></transiton></li>
+<li>vue编写插件的时候通常需要提供静态的install方法</li>
+<li>vue-router的install方法会给每一个组件注入beforeCreated方法和destoryed钩子函数，在beforeCreated做一些私有属性定义和路由初始化工作</li>
+<li>路由初始化时机是在组件的初始化阶段，执行到beforeCreated钩子函数的时候会执行router.init方法，然后又会执行router.transitionTo做路由过渡</li>
+<li>createMatcher的初始化就是根据路由的配置描述创建映射表，包括路径，名称到路由record的映射关系</li>
+<li>match会根据传入的位置和路径计算出新的位置，并匹配到对应的路由record，然后根据新的位置和record创建新的路径并返回</li>
+<li>路由始终会维护当前线路，路由切换的时候会把当前线路替换成目标线路，切换的过程中会执行一系列的导航守卫钩子函数，会更换url，同样也会渲染对应的组件，切换完毕后会把目标线路替换成当前线路，这样就会成为下一次路由切换的依据</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/7f0eaa44/" rel="next" title="前端容错">
+                <i class="fa fa-chevron-left"></i> 前端容错
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DogJun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number"></span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类型检查flow"><span class="nav-number">1.</span> <span class="nav-text">类型检查flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码目录设计"><span class="nav-number">2.</span> <span class="nav-text">源码目录设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Runtime-Only-VS-Runtime-Compiler"><span class="nav-number">3.</span> <span class="nav-text">Runtime Only VS Runtime + Compiler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue的定义"><span class="nav-number">4.</span> <span class="nav-text">Vue的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initGlobalAPI"><span class="nav-number">5.</span> <span class="nav-text">initGlobalAPI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据驱动"><span class="nav-number"></span> <span class="nav-text">数据驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-Vue发生了什么"><span class="nav-number">1.</span> <span class="nav-text">new Vue发生了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue实例挂载的实现"><span class="nav-number">2.</span> <span class="nav-text">Vue实例挂载的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#render"><span class="nav-number">3.</span> <span class="nav-text">render</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-DOM"><span class="nav-number">4.</span> <span class="nav-text">Virtual DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement"><span class="nav-number">5.</span> <span class="nav-text">createElement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update"><span class="nav-number">6.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件化"><span class="nav-number"></span> <span class="nav-text">组件化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#createComponent"><span class="nav-number">1.</span> <span class="nav-text">createComponent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件vnode-patch"><span class="nav-number">2.</span> <span class="nav-text">组件vnode patch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并配置"><span class="nav-number">3.</span> <span class="nav-text">合并配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">4.</span> <span class="nav-text">生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入响应式原理"><span class="nav-number"></span> <span class="nav-text">深入响应式原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式对象"><span class="nav-number">1.</span> <span class="nav-text">响应式对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖收集"><span class="nav-number">2.</span> <span class="nav-text">依赖收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#派发更新"><span class="nav-number">3.</span> <span class="nav-text">派发更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nextTick"><span class="nav-number">4.</span> <span class="nav-text">nextTick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测变化的注意事项"><span class="nav-number">5.</span> <span class="nav-text">检测变化的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算属性vs侦听属性"><span class="nav-number">6.</span> <span class="nav-text">计算属性vs侦听属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件更新"><span class="nav-number">7.</span> <span class="nav-text">组件更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理图"><span class="nav-number">8.</span> <span class="nav-text">原理图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译"><span class="nav-number"></span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展"><span class="nav-number"></span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#event"><span class="nav-number">1.</span> <span class="nav-text">event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-model"><span class="nav-number">2.</span> <span class="nav-text">v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slot"><span class="nav-number">3.</span> <span class="nav-text">slot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keep-alive"><span class="nav-number">4.</span> <span class="nav-text">keep-alive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transition-group"><span class="nav-number">5.</span> <span class="nav-text">transition-group</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router"><span class="nav-number"></span> <span class="nav-text">vue-router</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DogJun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</html>
